@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Flowpack\ElasticSearch\Indexer\Object;
+namespace Flowpack\OpenSearch\Indexer\Object;
 
 /*
- * This file is part of the Flowpack.ElasticSearch package.
+ * This file is part of the Flowpack.OpenSearch package.
  *
  * (c) Contributors of the Flowpack Team - flowpack.org
  *
@@ -13,11 +13,11 @@ namespace Flowpack\ElasticSearch\Indexer\Object;
  * source code.
  */
 
-use Flowpack\ElasticSearch\Annotations\Transform as TransformAnnotation;
-use Flowpack\ElasticSearch\Domain\Model\Client;
-use Flowpack\ElasticSearch\Domain\Model\Document;
-use Flowpack\ElasticSearch\Domain\Model\GenericType;
-use Flowpack\ElasticSearch\Domain\Model\Mapping;
+use Flowpack\OpenSearch\Annotations\Transform as TransformAnnotation;
+use Flowpack\OpenSearch\Domain\Model\Client;
+use Flowpack\OpenSearch\Domain\Model\Document;
+use Flowpack\OpenSearch\Domain\Model\GenericType;
+use Flowpack\OpenSearch\Domain\Model\Mapping;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Persistence\PersistenceManagerInterface;
 use Neos\Flow\Reflection\ReflectionService;
@@ -71,7 +71,7 @@ class ObjectIndexer
     protected $client;
 
     /**
-     * (Re-) indexes an object to the ElasticSearch index, no matter if the change is actually required.
+     * (Re-) indexes an object to the OpenSearch index, no matter if the change is actually required.
      *
      * @param object $object
      * @param string $signalInformation Signal information, if called from a signal
@@ -92,7 +92,7 @@ class ObjectIndexer
     }
 
     /**
-     * Returns the ElasticSearch type for a specific object, by its annotation
+     * Returns the OpenSearch type for a specific object, by its annotation
      *
      * @param object $object
      * @param Client $client

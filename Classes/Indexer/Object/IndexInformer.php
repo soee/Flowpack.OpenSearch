@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Flowpack\ElasticSearch\Indexer\Object;
+namespace Flowpack\OpenSearch\Indexer\Object;
 
 /*
- * This file is part of the Flowpack.ElasticSearch package.
+ * This file is part of the Flowpack.OpenSearch package.
  *
  * (c) Contributors of the Flowpack Team - flowpack.org
  *
@@ -13,8 +13,8 @@ namespace Flowpack\ElasticSearch\Indexer\Object;
  * source code.
  */
 
-use Flowpack\ElasticSearch\Annotations\Indexable;
-use Flowpack\ElasticSearch\Exception as ElasticSearchException;
+use Flowpack\OpenSearch\Annotations\Indexable;
+use Flowpack\OpenSearch\Exception as OpenSearchException;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\ObjectManagement\ObjectManagerInterface;
 use Neos\Flow\Reflection\ReflectionService;
@@ -58,7 +58,7 @@ class IndexInformer
      *
      * @param ObjectManagerInterface $objectManager
      * @return array
-     * @throws ElasticSearchException
+     * @throws OpenSearchException
      */
     public static function buildIndexClassesAndProperties($objectManager)
     {
@@ -70,7 +70,7 @@ class IndexInformer
         $annotationClassName = Indexable::class;
         foreach ($reflectionService->getClassNamesByAnnotation($annotationClassName) as $className) {
             if ($reflectionService->isClassAbstract($className)) {
-                throw new ElasticSearchException(sprintf('The class with name "%s" is annotated with %s, but is abstract. Indexable classes must not be abstract.', $className, $annotationClassName), 1339595182);
+                throw new OpenSearchException(sprintf('The class with name "%s" is annotated with %s, but is abstract. Indexable classes must not be abstract.', $className, $annotationClassName), 1339595182);
             }
             $indexAnnotations[$className]['annotation'] = $reflectionService->getClassAnnotation($className, $annotationClassName);
 

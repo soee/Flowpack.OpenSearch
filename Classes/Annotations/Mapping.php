@@ -1,8 +1,8 @@
 <?php
-namespace Flowpack\ElasticSearch\Annotations;
+namespace Flowpack\OpenSearch\Annotations;
 
 /*
- * This file is part of the Flowpack.ElasticSearch package.
+ * This file is part of the Flowpack.OpenSearch package.
  *
  * (c) Contributors of the Flowpack Team - flowpack.org
  *
@@ -89,7 +89,7 @@ final class Mapping
      * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-analyzer.html
      */
 	public $search_analyzer;
-    
+
     /**
      * The type to use for this
      * Defaults to the property/field type.

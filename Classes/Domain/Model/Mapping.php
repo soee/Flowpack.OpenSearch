@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Flowpack\ElasticSearch\Domain\Model;
+namespace Flowpack\OpenSearch\Domain\Model;
 
 /*
- * This file is part of the Flowpack.ElasticSearch package.
+ * This file is part of the Flowpack.OpenSearch package.
  *
  * (c) Contributors of the Flowpack Team - flowpack.org
  *
@@ -13,11 +13,11 @@ namespace Flowpack\ElasticSearch\Domain\Model;
  * source code.
  */
 
-use Flowpack\ElasticSearch\Transfer\Response;
+use Flowpack\OpenSearch\Transfer\Response;
 use Neos\Utility\Arrays;
 
 /**
- * Reflects a Mapping of Elasticsearch
+ * Reflects a Mapping of OpenSearch
  */
 class Mapping
 {
@@ -41,9 +41,9 @@ class Mapping
     protected $dynamicTemplates = [];
 
     /**
-     * This is the full / raw ElasticSearch mapping which is merged with the properties and dynamicTemplates.
+     * This is the full / raw OpenSearch mapping which is merged with the properties and dynamicTemplates.
      *
-     * It can be used to specify arbitrary ElasticSearch mapping options, like f.e. configuring the _all field.
+     * It can be used to specify arbitrary OpenSearch mapping options, like f.e. configuring the _all field.
      *
      * @var array
      */
@@ -93,7 +93,7 @@ class Mapping
      * Sets this mapping to the server
      *
      * @return Response
-     * @throws \Flowpack\ElasticSearch\Exception
+     * @throws \Flowpack\OpenSearch\Exception
      * @throws \Neos\Flow\Http\Exception
      */
     public function apply(): Response
@@ -157,9 +157,9 @@ class Mapping
     }
 
     /**
-     * This is the full / raw ElasticSearch mapping which is merged with the properties and dynamicTemplates.
+     * This is the full / raw OpenSearch mapping which is merged with the properties and dynamicTemplates.
      *
-     * It can be used to specify arbitrary ElasticSearch mapping options, like f.e. configuring the _all field.
+     * It can be used to specify arbitrary OpenSearch mapping options, like f.e. configuring the _all field.
      *
      * @param array $fullMapping
      * @return void

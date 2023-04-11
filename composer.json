@@ -1,8 +1,8 @@
 {
-    "name": "flowpack/elasticsearch",
+    "name": "flowpack/opensearch",
     "type": "neos-package",
     "license": "MIT",
-    "description": "This package provides wrapper functionality for the Elasticsearch engine.",
+    "description": "This package provides wrapper functionality for the OpenSearch engine.",
     "require": {
         "ext-curl": "*",
         "doctrine/annotations": "^1.0",
@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Flowpack\\ElasticSearch\\": "Classes"
+            "Flowpack\\OpenSearch\\": "Classes"
         }
     },
     "extra": {

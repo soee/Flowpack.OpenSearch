@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Flowpack\ElasticSearch\Domain\Factory;
+namespace Flowpack\OpenSearch\Domain\Factory;
 
 /*
- * This file is part of the Flowpack.ElasticSearch package.
+ * This file is part of the Flowpack.OpenSearch package.
  *
  * (c) Contributors of the Flowpack Team - flowpack.org
  *
@@ -13,16 +13,16 @@ namespace Flowpack\ElasticSearch\Domain\Factory;
  * source code.
  */
 
-use Flowpack\ElasticSearch\Domain\Exception\DocumentPropertiesMismatchException;
-use Flowpack\ElasticSearch\Domain\Model;
-use Flowpack\ElasticSearch\Transfer\Response;
+use Flowpack\OpenSearch\Domain\Exception\DocumentPropertiesMismatchException;
+use Flowpack\OpenSearch\Domain\Model;
+use Flowpack\OpenSearch\Transfer\Response;
 use Neos\Error\Messages\Error;
 use Neos\Error\Messages\Result as ErrorResult;
 use Neos\Flow\Annotations as Flow;
 use Neos\Utility\Arrays;
 
 /**
- * Reconstitute a Document from the ElasticSearch index.
+ * Reconstitute a Document from the OpenSearch index.
  *
  * TODO: maybe move into Document::createFromResponse()
  *

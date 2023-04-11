@@ -1,8 +1,8 @@
-Flowpack\ElasticSearch\Indexer\Object\ObjectIndexer:
+Flowpack\OpenSearch\Indexer\Object\ObjectIndexer:
   properties:
     client:
       object:
-        factoryObjectName: Flowpack\ElasticSearch\Domain\Factory\ClientFactory
+        factoryObjectName: Flowpack\OpenSearch\Domain\Factory\ClientFactory
         arguments:
           1:
-            setting: Flowpack.ElasticSearch.realtimeIndexing.client
+            setting: Flowpack.OpenSearch.realtimeIndexing.client

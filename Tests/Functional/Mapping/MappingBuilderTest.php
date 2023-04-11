@@ -1,8 +1,8 @@
 <?php
-namespace Flowpack\ElasticSearch\Tests\Functional\Mapping;
+namespace Flowpack\OpenSearch\Tests\Functional\Mapping;
 
 /*
- * This file is part of the Flowpack.ElasticSearch package.
+ * This file is part of the Flowpack.OpenSearch package.
  *
  * (c) Contributors of the Flowpack Team - flowpack.org
  *
@@ -11,8 +11,8 @@ namespace Flowpack\ElasticSearch\Tests\Functional\Mapping;
  * source code.
  */
 
-use Flowpack\ElasticSearch\Domain\Model\Mapping;
-use Flowpack\ElasticSearch\Mapping\EntityMappingBuilder;
+use Flowpack\OpenSearch\Domain\Model\Mapping;
+use Flowpack\OpenSearch\Mapping\EntityMappingBuilder;
 use Neos\Flow\Tests\FunctionalTestCase;
 
 class MappingBuilderTest extends FunctionalTestCase

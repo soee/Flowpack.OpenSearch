@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Flowpack\ElasticSearch\Mapping;
+namespace Flowpack\OpenSearch\Mapping;
 
 /*
- * This file is part of the Flowpack.ElasticSearch package.
+ * This file is part of the Flowpack.OpenSearch package.
  *
  * (c) Contributors of the Flowpack Team - flowpack.org
  *
@@ -13,9 +13,9 @@ namespace Flowpack\ElasticSearch\Mapping;
  * source code.
  */
 
-use Flowpack\ElasticSearch\Domain\Model;
-use Flowpack\ElasticSearch\Exception as ElasticSearchException;
-use Flowpack\ElasticSearch\Indexer\Object\IndexInformer;
+use Flowpack\OpenSearch\Domain\Model;
+use Flowpack\OpenSearch\Exception as OpenSearchException;
+use Flowpack\OpenSearch\Indexer\Object\IndexInformer;
 use Neos\Flow\Annotations as Flow;
 
 /**
@@ -48,13 +48,13 @@ class BackendMappingBuilder
      * Builds a Mapping collection from the annotation sources that are present
      *
      * @return MappingCollection<Model\Mapping>
-     * @throws ElasticSearchException
+     * @throws OpenSearchException
      * @throws \Neos\Flow\Http\Exception
      */
     public function buildMappingInformation(): MappingCollection
     {
         if (!$this->client instanceof Model\Client) {
-            throw new ElasticSearchException('No client was given for mapping retrieval. Set a client BackendMappingBuilder->setClient().', 1339678111);
+            throw new OpenSearchException('No client was given for mapping retrieval. Set a client BackendMappingBuilder->setClient().', 1339678111);
         }
 
         $this->indicesWithoutTypeInformation = [];
@@ -100,12 +100,12 @@ class BackendMappingBuilder
 
     /**
      * @return array
-     * @throws ElasticSearchException
+     * @throws OpenSearchException
      */
     public function getIndicesWithoutTypeInformation(): array
     {
         if ($this->indicesWithoutTypeInformation === null) {
-            throw new ElasticSearchException('For getting the indices having no mapping information attached, BackendMappingBuilder->buildMappingInformation() has to be run first.', 1339751812);
+            throw new OpenSearchException('For getting the indices having no mapping information attached, BackendMappingBuilder->buildMappingInformation() has to be run first.', 1339751812);
         }
 
         return $this->indicesWithoutTypeInformation;

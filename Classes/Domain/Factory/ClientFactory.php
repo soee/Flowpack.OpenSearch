@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Flowpack\ElasticSearch\Domain\Factory;
+namespace Flowpack\OpenSearch\Domain\Factory;
 
 /*
- * This file is part of the Flowpack.ElasticSearch package.
+ * This file is part of the Flowpack.OpenSearch package.
  *
  * (c) Contributors of the Flowpack Team - flowpack.org
  *
@@ -13,9 +13,9 @@ namespace Flowpack\ElasticSearch\Domain\Factory;
  * source code.
  */
 
-use Flowpack\ElasticSearch\Domain\Model\Client;
-use Flowpack\ElasticSearch\Domain\Model\Client\ClientConfiguration;
-use Flowpack\ElasticSearch\Exception as ElasticSearchException;
+use Flowpack\OpenSearch\Domain\Model\Client;
+use Flowpack\OpenSearch\Domain\Model\Client\ClientConfiguration;
+use Flowpack\OpenSearch\Exception as OpenSearchException;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Error\Exception as FlowErrorException;
 
@@ -42,7 +42,7 @@ class ClientFactory
      * @param string $bundle
      * @param string $clientClassName
      * @return Client
-     * @throws ElasticSearchException
+     * @throws OpenSearchException
      */
     public function create($bundle = null, $clientClassName = Client::class)
     {
@@ -51,7 +51,7 @@ class ClientFactory
         }
 
         if (!isset($this->settings['clients'][$bundle]) || !is_array($this->settings['clients'][$bundle])) {
-            throw new ElasticSearchException('The inquired client settings bundle "' . $bundle . '" is not present in setting "Flowpack.ElasticSearch.clients".', 1338890487);
+            throw new OpenSearchException('The inquired client settings bundle "' . $bundle . '" is not present in setting "Flowpack.OpenSearch.clients".', 1338890487);
         }
         $clientsSettings = $this->settings['clients'][$bundle];
 
@@ -67,7 +67,7 @@ class ClientFactory
     /**
      * @param array $clientsSettings
      * @return array
-     * @throws ElasticSearchException
+     * @throws OpenSearchException
      */
     protected function buildClientConfigurations(array $clientsSettings)
     {
@@ -81,7 +81,7 @@ class ClientFactory
                     $configuration->$setterMethodName($settingValue);
                 } catch (FlowErrorException $exception) {
                     $exceptionMessage = 'Setting key "' . $settingKey . '" as client configuration value is not allowed. Refer to the Settings.yaml.example for the supported keys.';
-                    throw new ElasticSearchException($exceptionMessage, 1338886877, $exception);
+                    throw new OpenSearchException($exceptionMessage, 1338886877, $exception);
                 }
             }
             $clientConfigurations[] = $configuration;

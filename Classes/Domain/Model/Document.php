@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Flowpack\ElasticSearch\Domain\Model;
+namespace Flowpack\OpenSearch\Domain\Model;
 
 /*
- * This file is part of the Flowpack.ElasticSearch package.
+ * This file is part of the Flowpack.OpenSearch package.
  *
  * (c) Contributors of the Flowpack Team - flowpack.org
  *
@@ -13,8 +13,8 @@ namespace Flowpack\ElasticSearch\Domain\Model;
  * source code.
  */
 
-use Flowpack\ElasticSearch\Exception as ElasticSearchException;
-use Flowpack\ElasticSearch\Transfer\Response;
+use Flowpack\OpenSearch\Exception as OpenSearchException;
+use Flowpack\OpenSearch\Transfer\Response;
 
 /**
  * A Document which itself holds the data
@@ -86,7 +86,7 @@ class Document
      *
      * @return void
      * @throws \Neos\Flow\Http\Exception
-     * @throws ElasticSearchException
+     * @throws OpenSearchException
      */
     public function store(): void
     {
@@ -157,12 +157,12 @@ class Document
      * @param string $fieldName
      * @param boolean $silent
      * @return mixed
-     * @throws ElasticSearchException
+     * @throws OpenSearchException
      */
     public function getField(string $fieldName, bool $silent = false)
     {
         if (!array_key_exists($fieldName, $this->data) && $silent === false) {
-            throw new ElasticSearchException(sprintf('The field %s was not present in data of document in %s/%s.', $fieldName, $this->type->getIndex()->getName(), $this->type->getName()), 1340274696);
+            throw new OpenSearchException(sprintf('The field %s was not present in data of document in %s/%s.', $fieldName, $this->type->getIndex()->getName(), $this->type->getName()), 1340274696);
         }
 
         return $this->data[$fieldName];
@@ -182,7 +182,7 @@ class Document
      * @param array $arguments
      * @param string|null $content
      * @return Response
-     * @throws ElasticSearchException
+     * @throws OpenSearchException
      * @throws \Neos\Flow\Http\Exception
      */
     protected function request(string $method, ?string $path = null, array $arguments = [], ?string $content = null): Response

@@ -1,8 +1,8 @@
 <?php
-namespace Flowpack\ElasticSearch\Indexer\Object\Transform;
+namespace Flowpack\OpenSearch\Indexer\Object\Transform;
 
 /*
- * This file is part of the Flowpack.ElasticSearch package.
+ * This file is part of the Flowpack.OpenSearch package.
  *
  * (c) Contributors of the Flowpack Team - flowpack.org
  *
@@ -11,7 +11,7 @@ namespace Flowpack\ElasticSearch\Indexer\Object\Transform;
  * source code.
  */
 
-use Flowpack\ElasticSearch\Annotations\Transform as TransformAnnotation;
+use Flowpack\OpenSearch\Annotations\Transform as TransformAnnotation;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Persistence\PersistenceManagerInterface;
 
@@ -27,7 +27,7 @@ class ObjectIdentifierTransformer implements TransformerInterface
     protected $persistenceManager;
 
     /**
-     * Returns the Elasticsearch type this transform() method returns
+     * Returns the OpenSearch type this transform() method returns
      *
      * @return string
      */

@@ -1,8 +1,8 @@
 <?php
-namespace Flowpack\ElasticSearch\Command;
+namespace Flowpack\OpenSearch\Command;
 
 /*
- * This file is part of the Flowpack.ElasticSearch package.
+ * This file is part of the Flowpack.OpenSearch package.
  *
  * (c) Contributors of the Flowpack Team - flowpack.org
  *
@@ -11,12 +11,12 @@ namespace Flowpack\ElasticSearch\Command;
  * source code.
  */
 
-use Flowpack\ElasticSearch\Domain\Factory\ClientFactory;
-use Flowpack\ElasticSearch\Domain\Model\Mapping;
-use Flowpack\ElasticSearch\Exception as ElasticSearchException;
-use Flowpack\ElasticSearch\Mapping\BackendMappingBuilder;
-use Flowpack\ElasticSearch\Mapping\EntityMappingBuilder;
-use Flowpack\ElasticSearch\Mapping\MappingCollection;
+use Flowpack\OpenSearch\Domain\Factory\ClientFactory;
+use Flowpack\OpenSearch\Domain\Model\Mapping;
+use Flowpack\OpenSearch\Exception as OpenSearchException;
+use Flowpack\OpenSearch\Mapping\BackendMappingBuilder;
+use Flowpack\OpenSearch\Mapping\EntityMappingBuilder;
+use Flowpack\OpenSearch\Mapping\MappingCollection;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Cli\CommandController;
 use Neos\Utility\Arrays;
@@ -110,7 +110,7 @@ class MappingCommandController extends CommandController
      * Traverses through mappingInformation array and aggregates by index and type names
      *
      * @param MappingCollection $mappingCollection
-     * @throws ElasticSearchException
+     * @throws OpenSearchException
      * @return array with index names as keys, second level type names as keys
      */
     protected function buildArrayFromMappingCollection(MappingCollection $mappingCollection)
@@ -122,7 +122,7 @@ class MappingCommandController extends CommandController
             $indexName = $mappingInformation->getType()->getIndex()->getName();
             $typeName = $mappingInformation->getType()->getName();
             if (isset($return[$indexName][$typeName])) {
-                throw new ElasticSearchException('There was more than one mapping present in index %s with type %s, which must not happen.', 1339758480);
+                throw new OpenSearchException('There was more than one mapping present in index %s with type %s, which must not happen.', 1339758480);
             }
 
             $return[$indexName][$typeName]['mappingInstance'] = $mappingInformation;

@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Flowpack\ElasticSearch\Domain\Model;
+namespace Flowpack\OpenSearch\Domain\Model;
 
 /*
- * This file is part of the Flowpack.ElasticSearch package.
+ * This file is part of the Flowpack.OpenSearch package.
  *
  * (c) Contributors of the Flowpack Team - flowpack.org
  *
@@ -13,8 +13,8 @@ namespace Flowpack\ElasticSearch\Domain\Model;
  * source code.
  */
 
-use Flowpack\ElasticSearch\Transfer\RequestService;
-use Flowpack\ElasticSearch\Transfer\Response;
+use Flowpack\OpenSearch\Transfer\RequestService;
+use Flowpack\OpenSearch\Transfer\Response;
 use Neos\Flow\Annotations as Flow;
 
 /**
@@ -83,7 +83,7 @@ class Client
     /**
      * @param string $indexName
      * @return Index
-     * @throws \Flowpack\ElasticSearch\Exception
+     * @throws \Flowpack\OpenSearch\Exception
      */
     public function findIndex(string $indexName): Index
     {
@@ -102,8 +102,8 @@ class Client
      * @param array $arguments
      * @param string|array $content
      * @return Response
-     * @throws \Flowpack\ElasticSearch\Transfer\Exception
-     * @throws \Flowpack\ElasticSearch\Transfer\Exception\ApiException
+     * @throws \Flowpack\OpenSearch\Transfer\Exception
+     * @throws \Flowpack\OpenSearch\Transfer\Exception\ApiException
      * @throws \Neos\Flow\Http\Exception
      */
     public function request(string $method, ?string $path = null, array $arguments = [], $content = null): Response

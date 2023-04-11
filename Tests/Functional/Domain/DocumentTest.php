@@ -1,8 +1,8 @@
 <?php
-namespace Flowpack\ElasticSearch\Tests\Functional\Domain;
+namespace Flowpack\OpenSearch\Tests\Functional\Domain;
 
 /*
- * This file is part of the Flowpack.ElasticSearch package.
+ * This file is part of the Flowpack.OpenSearch package.
  *
  * (c) Contributors of the Flowpack Team - flowpack.org
  *
@@ -11,8 +11,8 @@ namespace Flowpack\ElasticSearch\Tests\Functional\Domain;
  * source code.
  */
 
-use Flowpack\ElasticSearch\Domain\Model\Document;
-use Flowpack\ElasticSearch\Tests\Functional\Fixtures\TwitterType;
+use Flowpack\OpenSearch\Domain\Model\Document;
+use Flowpack\OpenSearch\Tests\Functional\Fixtures\TwitterType;
 
 class DocumentTest extends AbstractTest
 {
@@ -27,7 +27,7 @@ class DocumentTest extends AbstractTest
                 [
                     'user' => 'kimchy',
                     'post_date' => '2009-11-15T14:12:12',
-                    'message' => 'trying out Elastic Search'
+                    'message' => 'trying out OpenSearch'
                 ]
             ]
         ];

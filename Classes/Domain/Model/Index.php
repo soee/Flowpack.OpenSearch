@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Flowpack\ElasticSearch\Domain\Model;
+namespace Flowpack\OpenSearch\Domain\Model;
 
 /*
- * This file is part of the Flowpack.ElasticSearch package.
+ * This file is part of the Flowpack.OpenSearch package.
  *
  * (c) Contributors of the Flowpack Team - flowpack.org
  *
@@ -13,9 +13,9 @@ namespace Flowpack\ElasticSearch\Domain\Model;
  * source code.
  */
 
-use Flowpack\ElasticSearch\Exception as ElasticSearchException;
-use Flowpack\ElasticSearch\Service\DynamicIndexSettingService;
-use Flowpack\ElasticSearch\Transfer\Response;
+use Flowpack\OpenSearch\Exception as OpenSearchException;
+use Flowpack\OpenSearch\Service\DynamicIndexSettingService;
+use Flowpack\OpenSearch\Transfer\Response;
 use Neos\Utility\Arrays;
 use Neos\Flow\Annotations as Flow;
 
@@ -102,17 +102,17 @@ class Index
     /**
      * @param string $name
      * @param Client $client $client
-     * @throws ElasticSearchException
+     * @throws OpenSearchException
      */
     public function __construct(string $name, Client $client = null)
     {
         $name = trim($name);
         if (empty($name) || strpos($name, '_') === 0) {
-            throw new ElasticSearchException('The provided index name "' . $name . '" must not be empty and not start with an underscore.', 1340187948);
+            throw new OpenSearchException('The provided index name "' . $name . '" must not be empty and not start with an underscore.', 1340187948);
         }
 
         if ($name !== strtolower($name)) {
-            throw new ElasticSearchException('The provided index name "' . $name . '" must be all lowercase.', 1340187956);
+            throw new OpenSearchException('The provided index name "' . $name . '" must be all lowercase.', 1340187956);
         }
 
         $this->name = $name;
@@ -167,13 +167,13 @@ class Index
      * @param string|array $content
      * @param bool $prefixIndex
      * @return Response
-     * @throws ElasticSearchException
+     * @throws OpenSearchException
      * @throws \Neos\Flow\Http\Exception
      */
     public function request(string $method, string $path = null, array $arguments = [], $content = null, bool $prefixIndex = true): Response
     {
         if ($this->client === null) {
-            throw new ElasticSearchException('The client of the index "' . $this->prefixName() . '" is not set, hence no requests can be done.', 1566313883);
+            throw new OpenSearchException('The client of the index "' . $this->prefixName() . '" is not set, hence no requests can be done.', 1566313883);
         }
         $path = ltrim($path ? trim($path) : '', '/');
         if ($prefixIndex === true) {
@@ -186,7 +186,7 @@ class Index
     }
 
     /**
-     * @throws ElasticSearchException
+     * @throws OpenSearchException
      * @throws \Neos\Flow\Http\Exception
      */
     public function create(): void
@@ -212,7 +212,7 @@ class Index
     }
 
     /**
-     * @throws ElasticSearchException
+     * @throws OpenSearchException
      * @throws \Neos\Flow\Http\Exception
      */
     public function updateSettings(): void
@@ -233,7 +233,7 @@ class Index
 
     /**
      * @return Response
-     * @throws ElasticSearchException
+     * @throws OpenSearchException
      * @throws \Neos\Flow\Http\Exception
      */
     public function delete(): Response
@@ -245,7 +245,7 @@ class Index
      * Refresh the index
      *
      * @return Response
-     * @throws ElasticSearchException
+     * @throws OpenSearchException
      * @throws \Neos\Flow\Http\Exception
      */
     public function refresh(): Response

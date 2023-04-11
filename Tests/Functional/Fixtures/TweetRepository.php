@@ -1,8 +1,8 @@
 <?php
-namespace Flowpack\ElasticSearch\Tests\Functional\Fixtures;
+namespace Flowpack\OpenSearch\Tests\Functional\Fixtures;
 
 /*
- * This file is part of the Flowpack.ElasticSearch package.
+ * This file is part of the Flowpack.OpenSearch package.
  *
  * (c) Contributors of the Flowpack Team - flowpack.org
  *

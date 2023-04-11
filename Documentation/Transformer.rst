@@ -2,14 +2,14 @@
 Transformer
 ===========
 
-The Transformer classes allows you to transform your data before it's stored in elasticsearch.
+The Transformer classes allows you to transform your data before it's stored in OpenSearch.
 
 Transformer annotations
 =======================
 This package ships several Transformer by default:
 
 * CollectionStringCastTransformer:
-  
+
   * Iterates over an Collection/Array and casts all items to a string and returns an array with strings
 
 * DateTransformer
@@ -38,32 +38,32 @@ To transform an objects property at index time you need to annotate your value l
 
     /**
      * @var \DateTime
-     * @ElasticSearch\Transform(options={"format" = "Y-m-d H:m:s"}, type="date")
+     * @OpenSearch\Transform(options={"format" = "Y-m-d H:m:s"}, type="date")
      */
     protected $date;
 
 
-The `type` option is usded to determine the corresponding transformer class. Date would resolve to `Flowpack\ElasticSearch\Indexer\Object\Transform\DateTransformer`.
+The `type` option is usded to determine the corresponding transformer class. Date would resolve to `Flowpack\OpenSearch\Indexer\Object\Transform\DateTransformer`.
 and call it's implementation of `transformByAnnotation($source, TransformAnnotation $annotation)`.
 All default transformer can be used just like this.
 
 
 Implement a custom Transformer
 ==============================
-If you need a custom transformer you need to implement the TrnasformerInterface. 
+If you need a custom transformer you need to implement the TrnasformerInterface.
 It declares two methods:
 
-* getTargetMappingType: return value is used as mapping type in elasticsearch (one of https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html)
+* getTargetMappingType: return value is used as mapping type in OpenSearch (one of https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html)
 
 * transformByAnnotation: actual implementation of your transform process
 
 
 *Example: Custom Transformer that implements TransformerInterface and crops the source length* ::
-    
+
     <?php
     namespace Some\Vendor\Indexer\Object\Transform;
 
-    use Flowpack\ElasticSearch\Annotations\Transform as TransformAnnotation;
+    use Flowpack\OpenSearch\Annotations\Transform as TransformAnnotation;
     use Neos\Flow\Annotations as Flow;
 
     /**
@@ -73,12 +73,12 @@ It declares two methods:
     {
 
         /**
-        * Returns the Elasticsearch type that is used as mappping type
-        * 
+        * Returns the OpenSearch type that is used as mappping type
+        *
         * @return string
         */
         public function getTargetMappingType() {
-            return 'text' 
+            return 'text'
         }
 
         /**
@@ -97,7 +97,7 @@ It declares two methods:
             if ($annotation->options['length']) {
                 return substr((string) $source, 0, $annotation->options['length']);
             }
-            
+
             return (string) $source
         }
     }
@@ -108,7 +108,7 @@ It declares two methods:
 
     /**
      * @Flow\Entity
-     * @ElasticSearch\Indexable("twitter", typeName="tweet")
+     * @OpenSearch\Indexable("twitter", typeName="tweet")
      */
     class Tweet {
 
@@ -119,7 +119,7 @@ It declares two methods:
 
         /**
          * @var string
-         * @ElasticSearch\Transform(options={"length" = 20}, type="Some\Vendor\Indexer\Object\Transform\CropTransformer")
+         * @OpenSearch\Transform(options={"length" = 20}, type="Some\Vendor\Indexer\Object\Transform\CropTransformer")
          */
         protected $message;
 

@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Flowpack\ElasticSearch\Indexer\Aspect;
+namespace Flowpack\OpenSearch\Indexer\Aspect;
 
 /*
- * This file is part of the Flowpack.ElasticSearch package.
+ * This file is part of the Flowpack.OpenSearch package.
  *
  * (c) Contributors of the Flowpack Team - flowpack.org
  *
@@ -13,7 +13,7 @@ namespace Flowpack\ElasticSearch\Indexer\Aspect;
  * source code.
  */
 
-use Flowpack\ElasticSearch\Indexer\Object\ObjectIndexer;
+use Flowpack\OpenSearch\Indexer\Object\ObjectIndexer;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Aop\JoinPointInterface;
 
@@ -31,7 +31,7 @@ class IndexerAspect
     protected $objectIndexer;
 
     /**
-     * @Flow\AfterReturning("setting(Flowpack.ElasticSearch.realtimeIndexing.enabled) && within(Neos\Flow\Persistence\PersistenceManagerInterface) && method(public .+->(add|update)())")
+     * @Flow\AfterReturning("setting(Flowpack.OpenSearch.realtimeIndexing.enabled) && within(Neos\Flow\Persistence\PersistenceManagerInterface) && method(public .+->(add|update)())")
      * @param JoinPointInterface $joinPoint
      * @return string
      */
@@ -43,7 +43,7 @@ class IndexerAspect
     }
 
     /**
-     * @Flow\AfterReturning("setting(Flowpack.ElasticSearch.realtimeIndexing.enabled) && within(Neos\Flow\Persistence\PersistenceManagerInterface) && method(public .+->(remove)())")
+     * @Flow\AfterReturning("setting(Flowpack.OpenSearch.realtimeIndexing.enabled) && within(Neos\Flow\Persistence\PersistenceManagerInterface) && method(public .+->(remove)())")
      * @param JoinPointInterface $joinPoint
      * @return string
      */

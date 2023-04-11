@@ -1,5 +1,5 @@
 Flowpack:
-  ElasticSearch:
+  OpenSearch:
     clients:
       FunctionalTests:
         -
@@ -14,7 +14,7 @@ Flowpack:
 
     indexes:
       FunctionalTests: # Configuration bundle name
-        index_with_prefix: # The index prefix name, must be the same as in the Neos.ContentRepository.Search.elasticSearch.indexName setting
+        index_with_prefix: # The index prefix name, must be the same as in the Neos.ContentRepository.Search.openSearch.indexName setting
           prefix: 'prefix'
           settings:
             index:

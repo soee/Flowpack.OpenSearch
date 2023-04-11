@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Flowpack\ElasticSearch\Transfer;
+namespace Flowpack\OpenSearch\Transfer;
 
 /*
- * This file is part of the Flowpack.ElasticSearch package.
+ * This file is part of the Flowpack.OpenSearch package.
  *
  * (c) Contributors of the Flowpack Team - flowpack.org
  *
@@ -13,14 +13,14 @@ namespace Flowpack\ElasticSearch\Transfer;
  * source code.
  */
 
-use Flowpack\ElasticSearch\Exception as ElasticSearchException;
+use Flowpack\OpenSearch\Exception as OpenSearchException;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
 /**
- * Exception that occurs related to ElasticSearch transfers
+ * Exception that occurs related to OpenSearch transfers
  */
-class Exception extends ElasticSearchException
+class Exception extends OpenSearchException
 {
     /**
      * @var ResponseInterface
@@ -49,10 +49,10 @@ class Exception extends ElasticSearchException
 
         if ($request !== null) {
             $message = sprintf(
-"Elasticsearch request failed:
+"OpenSearch request failed:
 \n[%s %s]: %s
 \n\n
-Request data: 
+Request data:
 \n%s
 \n\n
 Response body:

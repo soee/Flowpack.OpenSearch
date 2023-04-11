@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Flowpack\ElasticSearch\Service;
+namespace Flowpack\OpenSearch\Service;
 
 /*
- * This file is part of the Flowpack.ElasticSearch package.
+ * This file is part of the Flowpack.OpenSearch package.
  *
  * (c) Contributors of the Flowpack Team - flowpack.org
  *
@@ -20,7 +20,7 @@ use Neos\Utility\PositionalArraySorter;
 
 /**
  * Transform indices settings dynamically
- * FIXME: This should be called DynamicIndexConfigurationService, the "settings" represent more than what elastic index "settings" are.
+ * FIXME: This should be called DynamicIndexConfigurationService, the "settings" represent more than what OpenSearch index "settings" are.
  *
  * @Flow\Scope("singleton")
  */

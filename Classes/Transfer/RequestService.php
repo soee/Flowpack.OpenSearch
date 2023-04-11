@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Flowpack\ElasticSearch\Transfer;
+namespace Flowpack\OpenSearch\Transfer;
 
 /*
- * This file is part of the Flowpack.ElasticSearch package.
+ * This file is part of the Flowpack.OpenSearch package.
  *
  * (c) Contributors of the Flowpack Team - flowpack.org
  *
@@ -13,8 +13,8 @@ namespace Flowpack\ElasticSearch\Transfer;
  * source code.
  */
 
-use Flowpack\ElasticSearch\Domain\Model\Client as ElasticSearchClient;
-use Flowpack\ElasticSearch\Domain\Model\Client\ClientConfiguration;
+use Flowpack\OpenSearch\Domain\Model\Client as OpenSearchClient;
+use Flowpack\OpenSearch\Domain\Model\Client\ClientConfiguration;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Http\Client\Browser;
 use Neos\Flow\Http\Client\CurlEngine;
@@ -74,7 +74,7 @@ class RequestService
 
     /**
      * @param string $method
-     * @param ElasticSearchClient $client
+     * @param OpenSearchClient $client
      * @param string $path
      * @param array $arguments
      * @param string|array $content
@@ -83,7 +83,7 @@ class RequestService
      * @throws Exception\ApiException
      * @throws \Neos\Flow\Http\Exception
      */
-    public function request($method, ElasticSearchClient $client, ?string $path = null, array $arguments = [], $content = null): Response
+    public function request($method, OpenSearchClient $client, ?string $path = null, array $arguments = [], $content = null): Response
     {
         $clientConfigurations = $client->getClientConfigurations();
         $clientConfiguration = $clientConfigurations[0];

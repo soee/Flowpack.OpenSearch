@@ -1,8 +1,8 @@
 <?php
-namespace Flowpack\ElasticSearch\Indexer\Object\Signal\Doctrine;
+namespace Flowpack\OpenSearch\Indexer\Object\Signal\Doctrine;
 
 /*
- * This file is part of the Flowpack.ElasticSearch package.
+ * This file is part of the Flowpack.OpenSearch package.
  *
  * (c) Contributors of the Flowpack Team - flowpack.org
  *
@@ -12,8 +12,8 @@ namespace Flowpack\ElasticSearch\Indexer\Object\Signal\Doctrine;
  */
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use Flowpack\ElasticSearch\Indexer\Object\Signal\EmitterAdapterInterface;
-use Flowpack\ElasticSearch\Indexer\Object\Signal\SignalEmitter;
+use Flowpack\OpenSearch\Indexer\Object\Signal\EmitterAdapterInterface;
+use Flowpack\OpenSearch\Indexer\Object\Signal\SignalEmitter;
 use Neos\Flow\Annotations as Flow;
 
 /**

@@ -1,8 +1,8 @@
 <?php
-namespace Flowpack\ElasticSearch\Tests\Functional\Domain;
+namespace Flowpack\OpenSearch\Tests\Functional\Domain;
 
 /*
- * This file is part of the Flowpack.ElasticSearch package.
+ * This file is part of the Flowpack.OpenSearch package.
  *
  * (c) Contributors of the Flowpack Team - flowpack.org
  *
@@ -11,8 +11,8 @@ namespace Flowpack\ElasticSearch\Tests\Functional\Domain;
  * source code.
  */
 
-use Flowpack\ElasticSearch\Domain\Factory\ClientFactory;
-use Flowpack\ElasticSearch\Domain\Model\Index;
+use Flowpack\OpenSearch\Domain\Factory\ClientFactory;
+use Flowpack\OpenSearch\Domain\Model\Index;
 use Neos\Flow\Tests\FunctionalTestCase;
 
 abstract class AbstractTest extends FunctionalTestCase
@@ -33,7 +33,7 @@ abstract class AbstractTest extends FunctionalTestCase
     protected $removeIndexOnTearDown = false;
 
     /**
-     * final because else it could seriously damage the Index in the unlikely case there's already an index named flow_ElasticSearch_FunctionalTests
+     * final because else it could seriously damage the Index in the unlikely case there's already an index named flow_OpenSearch_FunctionalTests
      */
     final public function setUp(): void
     {
@@ -41,10 +41,10 @@ abstract class AbstractTest extends FunctionalTestCase
 
         $this->clientFactory = $this->objectManager->get(ClientFactory::class);
         $client = $this->clientFactory->create("FunctionalTests");
-        $this->testingIndex = $client->findIndex('flow_elasticsearch_functionaltests');
+        $this->testingIndex = $client->findIndex('flow_opensearch_functionaltests');
 
         if ($this->testingIndex->exists()) {
-            throw new \Exception('The index "flow_elasticsearch_functionaltests" already existed, aborting.', 1338967487);
+            throw new \Exception('The index "flow_opensearch_functionaltests" already existed, aborting.', 1338967487);
         } else {
             $this->testingIndex->create();
             $this->removeIndexOnTearDown = true;

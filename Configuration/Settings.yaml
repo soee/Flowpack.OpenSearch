@@ -1,5 +1,5 @@
 Flowpack:
-  ElasticSearch:
+  OpenSearch:
     clients:
       default:
         -
@@ -20,9 +20,9 @@ Neos:
     persistence:
       doctrine:
         eventListeners:
-          Flowpack\ElasticSearch\Indexer\Object\Signal\Doctrine\EmitterAdapter:
+          Flowpack\OpenSearch\Indexer\Object\Signal\Doctrine\EmitterAdapter:
             events:
               - postUpdate
               - postPersist
               - postRemove
-            listener: Flowpack\ElasticSearch\Indexer\Object\Signal\Doctrine\EmitterAdapter
+            listener: Flowpack\OpenSearch\Indexer\Object\Signal\Doctrine\EmitterAdapter

@@ -1,8 +1,8 @@
 <?php
-namespace Flowpack\ElasticSearch\Tests\Functional\Indexer\Object;
+namespace Flowpack\OpenSearch\Tests\Functional\Indexer\Object;
 
 /*
- * This file is part of the Flowpack.ElasticSearch package.
+ * This file is part of the Flowpack.OpenSearch package.
  *
  * (c) Contributors of the Flowpack Team - flowpack.org
  *
@@ -11,9 +11,9 @@ namespace Flowpack\ElasticSearch\Tests\Functional\Indexer\Object;
  * source code.
  */
 
-use Flowpack\ElasticSearch\Annotations\Indexable as IndexableAnnotation;
-use Flowpack\ElasticSearch\Indexer\Object\IndexInformer;
-use Flowpack\ElasticSearch\Tests\Functional\Fixtures;
+use Flowpack\OpenSearch\Annotations\Indexable as IndexableAnnotation;
+use Flowpack\OpenSearch\Indexer\Object\IndexInformer;
+use Flowpack\OpenSearch\Tests\Functional\Fixtures;
 use Neos\Flow\Tests\FunctionalTestCase;
 
 class IndexInformerTest extends FunctionalTestCase

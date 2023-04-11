@@ -1,8 +1,8 @@
 <?php
-namespace Flowpack\ElasticSearch\Tests\Functional\Fixtures;
+namespace Flowpack\OpenSearch\Tests\Functional\Fixtures;
 
 /*
- * This file is part of the Flowpack.ElasticSearch package.
+ * This file is part of the Flowpack.OpenSearch package.
  *
  * (c) Contributors of the Flowpack Team - flowpack.org
  *
@@ -12,19 +12,19 @@ namespace Flowpack\ElasticSearch\Tests\Functional\Fixtures;
  */
 
 use Neos\Flow\Annotations as Flow;
-use Flowpack\ElasticSearch\Annotations as ElasticSearch;
+use Flowpack\OpenSearch\Annotations as OpenSearch;
 
 /**
  * This class contains just one property that has to be flagged as indexable.
  *
  * @Flow\Entity
- * @ElasticSearch\Indexable(indexName="dummyindex", typeName="sampletype")
+ * @OpenSearch\Indexable(indexName="dummyindex", typeName="sampletype")
  */
 class JustFewPropertiesToIndex
 {
     /**
      * @var string
-     * @ElasticSearch\Indexable
+     * @OpenSearch\Indexable
      */
     protected $value1;
 

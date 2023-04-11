@@ -1,8 +1,8 @@
 <?php
-namespace Flowpack\ElasticSearch;
+namespace Flowpack\OpenSearch;
 
 /*
- * This file is part of the Flowpack.ElasticSearch package.
+ * This file is part of the Flowpack.OpenSearch package.
  *
  * (c) Contributors of the Flowpack Team - flowpack.org
  *
@@ -11,8 +11,8 @@ namespace Flowpack\ElasticSearch;
  * source code.
  */
 
-use Flowpack\ElasticSearch\Indexer\Object\ObjectIndexer;
-use Flowpack\ElasticSearch\Indexer\Object\Signal\SignalEmitter;
+use Flowpack\OpenSearch\Indexer\Object\ObjectIndexer;
+use Flowpack\OpenSearch\Indexer\Object\Signal\SignalEmitter;
 use Neos\Flow\Configuration\ConfigurationManager;
 use Neos\Flow\Core\Booting\Sequence;
 use Neos\Flow\Core\Booting\Step;
@@ -20,7 +20,7 @@ use Neos\Flow\Core\Bootstrap;
 use Neos\Flow\Package\Package as BasePackage;
 
 /**
- * The ElasticSearch Package
+ * The OpenSearch Package
  */
 class Package extends BasePackage
 {

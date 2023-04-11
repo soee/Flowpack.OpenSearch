@@ -1,8 +1,8 @@
 <?php
-namespace Flowpack\ElasticSearch\Annotations;
+namespace Flowpack\OpenSearch\Annotations;
 
 /*
- * This file is part of the Flowpack.ElasticSearch package.
+ * This file is part of the Flowpack.OpenSearch package.
  *
  * (c) Contributors of the Flowpack Team - flowpack.org
  *

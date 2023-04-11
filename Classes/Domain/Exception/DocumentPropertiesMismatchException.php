@@ -1,8 +1,8 @@
 <?php
-namespace Flowpack\ElasticSearch\Domain\Exception;
+namespace Flowpack\OpenSearch\Domain\Exception;
 
 /*
- * This file is part of the Flowpack.ElasticSearch package.
+ * This file is part of the Flowpack.OpenSearch package.
  *
  * (c) Contributors of the Flowpack Team - flowpack.org
  *
@@ -11,13 +11,13 @@ namespace Flowpack\ElasticSearch\Domain\Exception;
  * source code.
  */
 
-use Flowpack\ElasticSearch\Exception as ElasticSearchException;
+use Flowpack\OpenSearch\Exception as OpenSearchException;
 use Neos\Error\Messages\Result;
 
 /**
  * Signals a mismatch between the document properties
  */
-class DocumentPropertiesMismatchException extends ElasticSearchException
+class DocumentPropertiesMismatchException extends OpenSearchException
 {
     /**
      * @var Result

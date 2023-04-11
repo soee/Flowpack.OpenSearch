@@ -1,8 +1,8 @@
 <?php
-namespace Flowpack\ElasticSearch\Tests\Functional\Fixtures;
+namespace Flowpack\OpenSearch\Tests\Functional\Fixtures;
 
 /*
- * This file is part of the Flowpack.ElasticSearch package.
+ * This file is part of the Flowpack.OpenSearch package.
  *
  * (c) Contributors of the Flowpack Team - flowpack.org
  *
@@ -12,19 +12,19 @@ namespace Flowpack\ElasticSearch\Tests\Functional\Fixtures;
  */
 
 use Neos\Flow\Annotations as Flow;
-use Flowpack\ElasticSearch\Annotations as ElasticSearch;
+use Flowpack\OpenSearch\Annotations as OpenSearch;
 
 /**
  * An object for the "twitter" index, representing a "tweet" document.
  *
  * @Flow\Entity
- * @ElasticSearch\Indexable(indexName="flow_elasticsearch_functionaltests_twitter", typeName="tweet")
+ * @OpenSearch\Indexable(indexName="flow_opensearch_functionaltests_twitter", typeName="tweet")
  */
 class Tweet
 {
     /**
      * @var string
-     * @ElasticSearch\Mapping(boost=2.0, term_vector="with_offsets")
+     * @OpenSearch\Mapping(boost=2.0, term_vector="with_offsets")
      */
     protected $username;
 
@@ -35,8 +35,8 @@ class Tweet
 
     /**
      * @var \DateTime
-     * @ElasticSearch\Mapping(format="YYYY-MM-dd")
-     * @ElasticSearch\Transform("Date", options={ "format"="Y-m-d" })
+     * @OpenSearch\Mapping(format="YYYY-MM-dd")
+     * @OpenSearch\Transform("Date", options={ "format"="Y-m-d" })
      */
     protected $date;
 

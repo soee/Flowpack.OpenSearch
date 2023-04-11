@@ -1,8 +1,8 @@
 <?php
-namespace Flowpack\ElasticSearch\Tests\Functional\Indexer\Object;
+namespace Flowpack\OpenSearch\Tests\Functional\Indexer\Object;
 
 /*
- * This file is part of the Flowpack.ElasticSearch package.
+ * This file is part of the Flowpack.OpenSearch package.
  *
  * (c) Contributors of the Flowpack Team - flowpack.org
  *
@@ -11,11 +11,11 @@ namespace Flowpack\ElasticSearch\Tests\Functional\Indexer\Object;
  * source code.
  */
 
-use Flowpack\ElasticSearch\Domain\Model\Client;
-use Flowpack\ElasticSearch\Domain\Model\Document;
-use Flowpack\ElasticSearch\Indexer\Object\ObjectIndexer;
-use Flowpack\ElasticSearch\Tests\Functional\Fixtures\TweetRepository;
-use Flowpack\ElasticSearch\Tests\Functional\Fixtures\Tweet;
+use Flowpack\OpenSearch\Domain\Model\Client;
+use Flowpack\OpenSearch\Domain\Model\Document;
+use Flowpack\OpenSearch\Indexer\Object\ObjectIndexer;
+use Flowpack\OpenSearch\Tests\Functional\Fixtures\TweetRepository;
+use Flowpack\OpenSearch\Tests\Functional\Fixtures\Tweet;
 use Neos\Flow\Tests\FunctionalTestCase;
 use Neos\Flow\Utility\Algorithms;
 
@@ -54,7 +54,7 @@ class ObjectIndexerTest extends FunctionalTestCase
         $documentId = $this->persistenceManager->getIdentifierByObject($testEntity);
 
         $resultDocument = $this->testClient
-            ->findIndex('flow_elasticsearch_functionaltests_twitter')
+            ->findIndex('flow_opensearch_functionaltests_twitter')
             ->findType('tweet')
             ->findDocumentById($documentId);
         $resultData = $resultDocument->getData();
@@ -72,7 +72,7 @@ class ObjectIndexerTest extends FunctionalTestCase
         $identifier = $this->persistenceManager->getIdentifierByObject($testEntity);
 
         $initialVersion = $this->testClient
-            ->findIndex('flow_elasticsearch_functionaltests_twitter')
+            ->findIndex('flow_opensearch_functionaltests_twitter')
             ->findType('tweet')
             ->findDocumentById($identifier)
             ->getVersion();
@@ -85,12 +85,12 @@ class ObjectIndexerTest extends FunctionalTestCase
         $this->persistenceManager->clearState();
 
         $changedDocument = $this->testClient
-            ->findIndex('flow_elasticsearch_functionaltests_twitter')
+            ->findIndex('flow_opensearch_functionaltests_twitter')
             ->findType('tweet')
             ->findDocumentById($identifier);
 
         // the version increments by two, since we index via AOP and via Doctrine lifecycle events
-        // see https://github.com/Flowpack/Flowpack.ElasticSearch/pull/36
+        // see https://github.com/Flowpack/Flowpack.OpenSearch/pull/36
         static::assertSame($initialVersion + 2, $changedDocument->getVersion());
         static::assertSame($changedDocument->getField('message'), 'changed message.');
     }
@@ -104,7 +104,7 @@ class ObjectIndexerTest extends FunctionalTestCase
         $identifier = $this->persistenceManager->getIdentifierByObject($testEntity);
 
         $initialDocument = $this->testClient
-            ->findIndex('flow_elasticsearch_functionaltests_twitter')
+            ->findIndex('flow_opensearch_functionaltests_twitter')
             ->findType('tweet')
             ->findDocumentById($identifier);
         static::assertInstanceOf(Document::class, $initialDocument);
@@ -115,7 +115,7 @@ class ObjectIndexerTest extends FunctionalTestCase
         $this->persistenceManager->clearState();
 
         $foundDocument = $this->testClient
-            ->findIndex('flow_elasticsearch_functionaltests_twitter')
+            ->findIndex('flow_opensearch_functionaltests_twitter')
             ->findType('tweet')
             ->findDocumentById($identifier);
         static::assertNull($foundDocument);

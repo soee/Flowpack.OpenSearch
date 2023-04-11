@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Flowpack\ElasticSearch\Domain\Model;
+namespace Flowpack\OpenSearch\Domain\Model;
 
 /*
- * This file is part of the Flowpack.ElasticSearch package.
+ * This file is part of the Flowpack.OpenSearch package.
  *
  * (c) Contributors of the Flowpack Team - flowpack.org
  *
@@ -13,9 +13,9 @@ namespace Flowpack\ElasticSearch\Domain\Model;
  * source code.
  */
 
-use Flowpack\ElasticSearch\Domain\Exception\DocumentPropertiesMismatchException;
-use Flowpack\ElasticSearch\Domain\Factory\DocumentFactory;
-use Flowpack\ElasticSearch\Transfer\Response;
+use Flowpack\OpenSearch\Domain\Exception\DocumentPropertiesMismatchException;
+use Flowpack\OpenSearch\Domain\Factory\DocumentFactory;
+use Flowpack\OpenSearch\Transfer\Response;
 use Neos\Flow\Annotations as Flow;
 use Neos\Utility\TypeHandling;
 
@@ -79,7 +79,7 @@ abstract class AbstractType
      * @param string $id
      * @return Document
      * @throws DocumentPropertiesMismatchException
-     * @throws \Flowpack\ElasticSearch\Exception
+     * @throws \Flowpack\OpenSearch\Exception
      * @throws \Neos\Flow\Http\Exception
      */
     public function findDocumentById(string $id): ?Document
@@ -98,7 +98,7 @@ abstract class AbstractType
      * @param array $arguments
      * @param string $content
      * @return Response
-     * @throws \Flowpack\ElasticSearch\Exception
+     * @throws \Flowpack\OpenSearch\Exception
      * @throws \Neos\Flow\Http\Exception
      */
     public function request(string $method, ?string $path = null, array $arguments = [], ?string $content = null): Response
@@ -109,7 +109,7 @@ abstract class AbstractType
     /**
      * @param string $id
      * @return boolean ...whether the deletion is considered successful
-     * @throws \Flowpack\ElasticSearch\Exception
+     * @throws \Flowpack\OpenSearch\Exception
      * @throws \Neos\Flow\Http\Exception
      */
     public function deleteDocumentById(string $id): bool
@@ -122,7 +122,7 @@ abstract class AbstractType
 
     /**
      * @return int
-     * @throws \Flowpack\ElasticSearch\Exception
+     * @throws \Flowpack\OpenSearch\Exception
      * @throws \Neos\Flow\Http\Exception
      */
     public function count(): ?int
@@ -139,7 +139,7 @@ abstract class AbstractType
     /**
      * @param array $searchQuery The search query TODO: make it an object
      * @return Response
-     * @throws \Flowpack\ElasticSearch\Exception
+     * @throws \Flowpack\OpenSearch\Exception
      * @throws \Neos\Flow\Http\Exception
      */
     public function search(array $searchQuery): Response

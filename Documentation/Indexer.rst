@@ -15,7 +15,7 @@ single properties, only these will be indexed. However, you have to annotate the
 
     /**
      * @Flow\Entity
-     * @ElasticSearch\Indexable("twitter", typeName="tweet")
+     * @OpenSearch\Indexable("twitter", typeName="tweet")
      */
     class Tweet {
 
@@ -39,7 +39,7 @@ single properties, only these will be indexed. However, you have to annotate the
 
     /**
      * @Flow\Entity
-     * @ElasticSearch\Indexable("twitter", typeName="tweet")
+     * @OpenSearch\Indexable("twitter", typeName="tweet")
      */
     class Tweet {
 
@@ -50,7 +50,7 @@ single properties, only these will be indexed. However, you have to annotate the
 
         /**
          * @var string
-         * @ElasticSearch\Indexable
+         * @OpenSearch\Indexable
          */
         protected $message;
 
@@ -63,13 +63,13 @@ single properties, only these will be indexed. However, you have to annotate the
 Mapping annotations
 ===================
 
-ElasticSearch allows the mapping configuration done via annotations. See the example how to define mapping annotations:
+OpenSearch allows the mapping configuration done via annotations. See the example how to define mapping annotations:
 
 *Example: Annotations to set up mapping directives* ::
 
     /**
      * @var string
-     * @ElasticSearch\Mapping(boost=2.0, term_vector="with_offsets")
+     * @OpenSearch\Mapping(boost=2.0, term_vector="with_offsets")
      */
     protected $username;
 
@@ -80,7 +80,7 @@ ElasticSearch allows the mapping configuration done via annotations. See the exa
 
     /**
      * @var \DateTime
-     * @ElasticSearch\Mapping(format="YYYY-MM-dd")
+     * @OpenSearch\Mapping(format="YYYY-MM-dd")
      */
     protected $date;
 
@@ -90,16 +90,16 @@ Value transformations
 =====================
 
 For some properties it'll be necessary to conduct specific conversions in order to meet the requirements of
-ElasticSearch. Declare custom type converters via their appropriate annotation::
+OpenSearch. Declare custom type converters via their appropriate annotation::
 
     /**
      * @var \DateTime
-     * @ElasticSearch\Mapping(format="YYYY-MM-dd")
-     * @ElasticSearch\Transform("Date")
+     * @OpenSearch\Mapping(format="YYYY-MM-dd")
+     * @OpenSearch\Transform("Date")
      */
     protected $date;
 
-This will call the (supplied with the package) Date transformer and hand the converted value over to the ElasticSearch
+This will call the (supplied with the package) Date transformer and hand the converted value over to the OpenSearch
 engine.
 
 Setting up the indexes
@@ -112,7 +112,7 @@ As soon as you have proper configuration for your entities, you can create your 
 If you need advanced settings you can define them in your ``Settings.yaml``::
 
     Flowpack:
-      ElasticSearch:
+      OpenSearch:
         indexes:
           default:
             'twitter':
@@ -135,7 +135,7 @@ You can update the index configuration with the following CLI::
 
     flow index:updateSettings --index-name twitter
 
-Please check the ElasticSearch configuration to know witch settings are updatable. For any other settings changes, you
+Please check the OpenSearch configuration to know witch settings are updatable. For any other settings changes, you
 need to delete your indexes::
 
     flow index:delete --index-name twitter

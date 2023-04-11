@@ -1,8 +1,8 @@
 <?php
-namespace Flowpack\ElasticSearch\Tests\Functional\Domain;
+namespace Flowpack\OpenSearch\Tests\Functional\Domain;
 
 /*
- * This file is part of the Flowpack.ElasticSearch package.
+ * This file is part of the Flowpack.OpenSearch package.
  *
  * (c) Contributors of the Flowpack Team - flowpack.org
  *
@@ -11,10 +11,10 @@ namespace Flowpack\ElasticSearch\Tests\Functional\Domain;
  * source code.
  */
 
-use Flowpack\ElasticSearch\Domain\Model\Client;
-use Flowpack\ElasticSearch\Transfer\Response;
+use Flowpack\OpenSearch\Domain\Model\Client;
+use Flowpack\OpenSearch\Transfer\Response;
 use Neos\Flow\Tests\FunctionalTestCase;
-use Flowpack\ElasticSearch\Domain\Model\Index;
+use Flowpack\OpenSearch\Domain\Model\Index;
 
 class IndexTest extends FunctionalTestCase
 {

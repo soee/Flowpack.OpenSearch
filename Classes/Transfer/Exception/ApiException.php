@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Flowpack\ElasticSearch\Transfer\Exception;
+namespace Flowpack\OpenSearch\Transfer\Exception;
 
 /*
- * This file is part of the Flowpack.ElasticSearch package.
+ * This file is part of the Flowpack.OpenSearch package.
  *
  * (c) Contributors of the Flowpack Team - flowpack.org
  *
@@ -13,13 +13,13 @@ namespace Flowpack\ElasticSearch\Transfer\Exception;
  * source code.
  */
 
-use Flowpack\ElasticSearch\Transfer\Exception as ElasticSearchException;
+use Flowpack\OpenSearch\Transfer\Exception as OpenSearchException;
 
 /**
- * This exception type is intended to map any error output that was returned by ElasticSearch itself
- * If, for example, ElasticSearch returns {"error":"IndexMissingException[[foo_bar] missing]","status":404}
+ * This exception type is intended to map any error output that was returned by OpenSearch itself
+ * If, for example, OpenSearch returns {"error":"IndexMissingException[[foo_bar] missing]","status":404}
  * this exception is raised.
  */
-class ApiException extends ElasticSearchException
+class ApiException extends OpenSearchException
 {
 }

@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Flowpack\ElasticSearch\Mapping;
+namespace Flowpack\OpenSearch\Mapping;
 
 /*
- * This file is part of the Flowpack.ElasticSearch package.
+ * This file is part of the Flowpack.OpenSearch package.
  *
  * (c) Contributors of the Flowpack Team - flowpack.org
  *
@@ -14,8 +14,8 @@ namespace Flowpack\ElasticSearch\Mapping;
  */
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Flowpack\ElasticSearch\Domain\Model\Client as ElasticSearchClient;
-use Flowpack\ElasticSearch\Domain\Model\Mapping;
+use Flowpack\OpenSearch\Domain\Model\Client as OpenSearchClient;
+use Flowpack\OpenSearch\Domain\Model\Mapping;
 
 class MappingCollection extends ArrayCollection
 {
@@ -30,7 +30,7 @@ class MappingCollection extends ArrayCollection
     protected $type;
 
     /**
-     * @var ElasticSearchClient
+     * @var OpenSearchClient
      */
     protected $client;
 
@@ -96,7 +96,7 @@ class MappingCollection extends ArrayCollection
     }
 
     /**
-     * @return ElasticSearchClient
+     * @return OpenSearchClient
      */
     public function getClient()
     {
@@ -104,10 +104,10 @@ class MappingCollection extends ArrayCollection
     }
 
     /**
-     * @param ElasticSearchClient $client
+     * @param OpenSearchClient $client
      * @return void
      */
-    public function setClient(ElasticSearchClient $client)
+    public function setClient(OpenSearchClient $client)
     {
         $this->client = $client;
     }

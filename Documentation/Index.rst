@@ -1,9 +1,9 @@
 ====================================
-Flowpack.ElasticSearch documentation
+Flowpack.OpenSearch documentation
 ====================================
 
-This package provides an API for using Elasticsearch with Flow. The intention is to provide a simple,
-`fluent-interface`_-driven framework respecting the paradigm of Elasticsearch, made for working best
+This package provides an API for using OpenSearch with Flow. The intention is to provide a simple,
+`fluent-interface`_-driven framework respecting the paradigm of OpenSearch, made for working best
 with the features Flow already provides.
 
 Setting up the clients
@@ -13,7 +13,7 @@ Usually you will only need one *client*. A *client* is one target the search com
 of many *nodes*. Perform the setting in the appropriate ``Settings.yaml``::
 
 	Flowpack:
-	  ElasticSearch:
+	  OpenSearch:
 	    clients:
 	        # default bundle that will be used if no more specific bundle name was supplied.
 	      default:
@@ -33,15 +33,15 @@ have a dedicated server (recommended) for running the Functional Tests, set it u
 
 During runtime, you have to provide the client's name you want to connect to, if it is not `default`.
 
-When access to the Elasticsearch instance is protected through HTTP Basic Auth, you can provide the necessary username
+When access to the OpenSearch instance is protected through HTTP Basic Auth, you can provide the necessary username
 and password in your client settings::
 
 	Flowpack:
-	  ElasticSearch:
+	  OpenSearch:
 	    clients:
 	        # default bundle that will be used if no more specific bundle name was supplied.
 	      default:
-	        - host: my.elasticsearch-service.com
+	        - host: my.opensearch-service.com
 	          port: 443
 	          scheme: https
 	          username: john
@@ -51,8 +51,8 @@ Running the Functional Tests
 ============================
 
 For running the Functional Tests, the API will connect to the server and host you've set up in the ``Settings.yaml``
-directive ``Flowpack.ElasticSearch.clients.FunctionalTests`` (see above). The test scenario will try to create a temporary
-test *index* named ``flow_elasticsearch_functionaltests`` where it will work the test data on. If this index already
+directive ``Flowpack.OpenSearch.clients.FunctionalTests`` (see above). The test scenario will try to create a temporary
+test *index* named ``flow_opensearch_functionaltests`` where it will work the test data on. If this index already
 exists, the test will stop with a notification in order not to destroy some real-life-data in the unlikely case it has
 that name.
 
@@ -68,7 +68,7 @@ inject it wherever you need::
 
 		/**
 		 * @Flow\Inject
-		 * @var \Flowpack\ElasticSearch\Client\ClientFactory
+		 * @var \Flowpack\OpenSearch\Client\ClientFactory
 		 */
 		protected $clientFactory;
 
@@ -94,7 +94,7 @@ While a document itself is very generic (it consists of data, its mother *index*
 and reflects some real existing Model. Therefore the API provides an AbstractType where you as the developer inherit
 your specific, intended types from, for example::
 
-	class TwitterType extends \Flowpack\ElasticSearch\Domain\Model\AbstractType {
+	class TwitterType extends \Flowpack\OpenSearch\Domain\Model\AbstractType {
 	}
 
 This class might even be empty like in this case, it just has to be there. Per default, the name of the type is
@@ -107,7 +107,7 @@ So for storing a Twitter document, follow this example::
 
 		/**
 		 * @Flow\Inject
-		 * @var \Flowpack\ElasticSearch\Client\ClientFactory
+		 * @var \Flowpack\OpenSearch\Client\ClientFactory
 		 */
 		protected $clientFactory;
 
@@ -115,7 +115,7 @@ So for storing a Twitter document, follow this example::
 			$client = $this->clientFactory->create();
 			$tweetsIndex = $client->findIndex('tweets');
 			$twitterType = new TwitterType($tweetsIndex);
-			$document = new \Flowpack\ElasticSearch\Document($twitterType, array(
+			$document = new \Flowpack\OpenSearch\Document($twitterType, array(
 				'user' => 'John',
 				'date' => '2012-06-12',
 				'text' => 'This is an example document data'

@@ -1,8 +1,8 @@
 <?php
-namespace Flowpack\ElasticSearch\Command;
+namespace Flowpack\OpenSearch\Command;
 
 /*
- * This file is part of the Flowpack.ElasticSearch package.
+ * This file is part of the Flowpack.OpenSearch package.
  *
  * (c) Contributors of the Flowpack Team - flowpack.org
  *
@@ -11,12 +11,12 @@ namespace Flowpack\ElasticSearch\Command;
  * source code.
  */
 
-use Flowpack\ElasticSearch\Annotations\Indexable;
-use Flowpack\ElasticSearch\Domain\Factory\ClientFactory;
-use Flowpack\ElasticSearch\Domain\Model\Client;
-use Flowpack\ElasticSearch\Domain\Model\Index;
-use Flowpack\ElasticSearch\Indexer\Object\IndexInformer;
-use Flowpack\ElasticSearch\Indexer\Object\ObjectIndexer;
+use Flowpack\OpenSearch\Annotations\Indexable;
+use Flowpack\OpenSearch\Domain\Factory\ClientFactory;
+use Flowpack\OpenSearch\Domain\Model\Client;
+use Flowpack\OpenSearch\Domain\Model\Index;
+use Flowpack\OpenSearch\Indexer\Object\IndexInformer;
+use Flowpack\OpenSearch\Indexer\Object\ObjectIndexer;
 use Neos\Error\Messages\Error;
 use Neos\Error\Messages\Result as ErrorResult;
 use Neos\Flow\Annotations as Flow;
@@ -56,12 +56,12 @@ class IndexCommandController extends CommandController
     protected $objectIndexer;
 
     /**
-     * Create a new index in ElasticSearch
+     * Create a new index in OpenSearch
      *
      * @param string $indexName The name of the new index
      * @param string $clientName The client name to use
      * @return void
-     * @throws \Flowpack\ElasticSearch\Exception
+     * @throws \Flowpack\OpenSearch\Exception
      * @throws \Neos\Flow\Cli\Exception\StopCommandException
      */
     public function createCommand($indexName, $clientName = null)
@@ -92,7 +92,7 @@ class IndexCommandController extends CommandController
      * @param string $indexName The name of the new index
      * @param string $clientName The client name to use
      * @return void
-     * @throws \Flowpack\ElasticSearch\Exception
+     * @throws \Flowpack\OpenSearch\Exception
      * @throws \Neos\Flow\Cli\Exception\StopCommandException
      */
     public function updateSettingsCommand($indexName, $clientName = null)
@@ -118,7 +118,7 @@ class IndexCommandController extends CommandController
     }
 
     /**
-     * Delete an index in ElasticSearch
+     * Delete an index in OpenSearch
      *
      * @param string $indexName The name of the index to be removed
      * @param string $clientName The client name to use
@@ -147,7 +147,7 @@ class IndexCommandController extends CommandController
     }
 
     /**
-     * Refresh an index in ElasticSearch
+     * Refresh an index in OpenSearch
      *
      * @param string $indexName The name of the index to be removed
      * @param string $clientName The client name to use
@@ -219,7 +219,7 @@ class IndexCommandController extends CommandController
             ], 8);
             $count = $client->findIndex($annotation->indexName)->findType($annotation->typeName)->count();
             if ($count === null) {
-                $result->forProperty($className)->addError(new Error('ElasticSearch was unable to retrieve a count for the type "%s" at index "%s". Probably these don\' exist.', 1340289921, [
+                $result->forProperty($className)->addError(new Error('OpenSearch was unable to retrieve a count for the type "%s" at index "%s". Probably these don\' exist.', 1340289921, [
                     $annotation->typeName,
                     $annotation->indexName,
                 ]));
@@ -246,7 +246,7 @@ class IndexCommandController extends CommandController
                             $this->objectIndexer->indexObject($this->persistenceManager->getObjectByIdentifier($identifier, $className));
                             $inserted++;
                         } catch (\Exception $exception) {
-                            $result->forProperty($className)->addError(new Error('An error occurred while trying to add an object to the ElasticSearch backend. The exception message was "%s".', 1340356330, [$exception->getMessage()]));
+                            $result->forProperty($className)->addError(new Error('An error occurred while trying to add an object to the OpenSearch backend. The exception message was "%s".', 1340356330, [$exception->getMessage()]));
                         }
                     }
                     foreach ($states[ObjectIndexer::ACTION_TYPE_UPDATE] as $identifier) {
@@ -254,7 +254,7 @@ class IndexCommandController extends CommandController
                             $this->objectIndexer->indexObject($this->persistenceManager->getObjectByIdentifier($identifier, $className));
                             $updated++;
                         } catch (\Exception $exception) {
-                            $result->forProperty($className)->addError(new Error('An error occurred while trying to update an object to the ElasticSearch backend. The exception message was "%s".', 1340358590, [$exception->getMessage()]));
+                            $result->forProperty($className)->addError(new Error('An error occurred while trying to update an object to the OpenSearch backend. The exception message was "%s".', 1340358590, [$exception->getMessage()]));
                         }
                     }
                     $this->outputFormatted("Objects inserted: <b>%s</b>", [$inserted], 8);
