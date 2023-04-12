@@ -28,23 +28,23 @@ abstract class AbstractType
      * @Flow\Inject
      * @var DocumentFactory
      */
-    protected $documentFactory;
+    protected DocumentFactory $documentFactory;
 
     /**
      * @var Index
      */
-    protected $index;
+    protected Index $index;
 
     /**
      * @var string
      */
-    protected $name;
+    protected string $name;
 
     /**
      * @param Index $index
-     * @param string $name
+     * @param string|null $name
      */
-    public function __construct(Index $index, $name = null)
+    public function __construct(Index $index, string $name = null)
     {
         $this->index = $index;
 
@@ -77,7 +77,7 @@ abstract class AbstractType
      * Returns a document
      *
      * @param string $id
-     * @return Document
+     * @return Document|null
      * @throws DocumentPropertiesMismatchException
      * @throws \Flowpack\OpenSearch\Exception
      * @throws \Neos\Flow\Http\Exception
@@ -94,9 +94,9 @@ abstract class AbstractType
 
     /**
      * @param string $method
-     * @param string $path
+     * @param ?string $path
      * @param array $arguments
-     * @param string $content
+     * @param ?string $content
      * @return Response
      * @throws \Flowpack\OpenSearch\Exception
      * @throws \Neos\Flow\Http\Exception
@@ -121,7 +121,7 @@ abstract class AbstractType
     }
 
     /**
-     * @return int
+     * @return ?int
      * @throws \Flowpack\OpenSearch\Exception
      * @throws \Neos\Flow\Http\Exception
      */

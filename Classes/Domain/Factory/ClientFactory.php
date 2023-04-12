@@ -28,23 +28,23 @@ class ClientFactory
     /**
      * @var array
      */
-    protected $settings;
+    protected array $settings;
 
     /**
      * @param array $settings
      */
-    public function injectSettings(array $settings)
+    public function injectSettings(array $settings): void
     {
         $this->settings = $settings;
     }
 
     /**
-     * @param string $bundle
+     * @param string|null $bundle
      * @param string $clientClassName
      * @return Client
      * @throws OpenSearchException
      */
-    public function create($bundle = null, $clientClassName = Client::class)
+    public function create(string $bundle = null, string $clientClassName = Client::class): Client
     {
         if ($bundle === null) {
             $bundle = 'default';
@@ -69,7 +69,7 @@ class ClientFactory
      * @return array
      * @throws OpenSearchException
      */
-    protected function buildClientConfigurations(array $clientsSettings)
+    protected function buildClientConfigurations(array $clientsSettings): array
     {
         $clientConfigurations = [];
         $clientConfiguration = new ClientConfiguration();

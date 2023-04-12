@@ -22,13 +22,13 @@ class DocumentPropertiesMismatchException extends OpenSearchException
     /**
      * @var Result
      */
-    protected $errorResult;
+    protected Result $errorResult;
 
     /**
      * @param Result $result
      * @return void
      */
-    public function setErrorResult(Result $result)
+    public function setErrorResult(Result $result): void
     {
         $this->errorResult = $result;
     }

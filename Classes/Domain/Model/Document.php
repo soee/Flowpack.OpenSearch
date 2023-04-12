@@ -24,26 +24,26 @@ class Document
     /**
      * @var AbstractType
      */
-    protected $type;
+    protected AbstractType $type;
 
     /**
      * The actual data to store to the document
      *
      * @var array|null
      */
-    protected $data;
+    protected ?array $data;
 
     /**
      * The version that has been assigned to this document.
      *
      * @var int|null
      */
-    protected $version;
+    protected ?int $version;
 
     /**
      * @var string|null
      */
-    protected $id;
+    protected ?string $id;
 
     /**
      * Whether this document represents the state like it should be at the storage.
@@ -52,13 +52,13 @@ class Document
      *
      * @var bool
      */
-    protected $dirty = true;
+    protected bool $dirty = true;
 
     /**
      * @param AbstractType $type
-     * @param array $data
-     * @param string $id
-     * @param int $version
+     * @param ?array $data
+     * @param ?string $id
+     * @param ?int $version
      */
     public function __construct(AbstractType $type, ?array $data = null, ?string $id = null, ?int $version = null)
     {
@@ -115,7 +115,7 @@ class Document
     }
 
     /**
-     * @return int|nulll
+     * @return ?int
      */
     public function getVersion(): ?int
     {
@@ -144,7 +144,7 @@ class Document
     }
 
     /**
-     * @return string|null
+     * @return ?string
      */
     public function getId(): ?string
     {

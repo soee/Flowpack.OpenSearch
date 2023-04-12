@@ -22,10 +22,10 @@ final class Transform
     /**
      * @var string
      */
-    public $type;
+    public string $type;
 
     /**
      * @var array
      */
-    public $options;
+    public array $options;
 }

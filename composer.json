@@ -3,7 +3,16 @@
     "type": "neos-package",
     "license": "MIT",
     "description": "This package provides wrapper functionality for the OpenSearch engine.",
+    "authors": [
+        {
+            "name": "Marcin Sągol",
+            "email": "kontakt@soee.pl",
+            "homepage": "https://soee.pl",
+            "role": "Developer"
+        }
+    ],
     "require": {
+        "php": "^8.0",
         "ext-curl": "*",
         "doctrine/annotations": "^1.0",
         "doctrine/collections": "^1.0",
@@ -13,10 +22,21 @@
         "neos/utility-arrays": "^6.0 || ^7.0 || ^8.0 || dev-master",
         "neos/utility-objecthandling": "^6.0 || ^7.0 || ^8.0 || dev-master"
     },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.16"
+    },
     "autoload": {
         "psr-4": {
             "Flowpack\\OpenSearch\\": "Classes"
         }
+    },
+    "scripts": {
+        "ci:php:cs-fixer": [
+            "php-cs-fixer fix -v --dry-run --using-cache no --diff"
+        ],
+        "fix:php:cs-fixer": [
+            "php-cs-fixer fix -v --using-cache no"
+        ]
     },
     "extra": {
         "applied-flow-migrations": [

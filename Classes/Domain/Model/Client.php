@@ -28,23 +28,23 @@ class Client
      *
      * @var string
      */
-    protected $bundle = 'default';
+    protected string $bundle = 'default';
 
     /**
      * @Flow\Inject
      * @var RequestService
      */
-    protected $requestService;
+    protected RequestService $requestService;
 
     /**
      * @var array
      */
-    protected $clientConfigurations;
+    protected array $clientConfigurations;
 
     /**
      * @var array
      */
-    protected $indexCollection = [];
+    protected array $indexCollection = [];
 
     /**
      * @return string
@@ -98,15 +98,15 @@ class Client
      * Passes a request through to the request service
      *
      * @param string $method
-     * @param string $path
+     * @param ?string $path
      * @param array $arguments
-     * @param string|array $content
+     * @param ?string|array $content
      * @return Response
      * @throws \Flowpack\OpenSearch\Transfer\Exception
      * @throws \Flowpack\OpenSearch\Transfer\Exception\ApiException
      * @throws \Neos\Flow\Http\Exception
      */
-    public function request(string $method, ?string $path = null, array $arguments = [], $content = null): Response
+    public function request(string $method, ?string $path = null, array $arguments = [], string|array $content = null): Response
     {
         return $this->requestService->request($method, $this, $path, $arguments, $content);
     }

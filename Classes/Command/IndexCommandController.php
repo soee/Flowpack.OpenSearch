@@ -35,38 +35,38 @@ class IndexCommandController extends CommandController
      * @Flow\Inject
      * @var ClientFactory
      */
-    protected $clientFactory;
+    protected ClientFactory $clientFactory;
 
     /**
      * @Flow\Inject
      * @var IndexInformer
      */
-    protected $indexInformer;
+    protected IndexInformer $indexInformer;
 
     /**
      * @Flow\Inject
      * @var PersistenceManagerInterface
      */
-    protected $persistenceManager;
+    protected PersistenceManagerInterface $persistenceManager;
 
     /**
      * @Flow\Inject
      * @var ObjectIndexer
      */
-    protected $objectIndexer;
+    protected ObjectIndexer $objectIndexer;
 
     /**
      * Create a new index in OpenSearch
      *
      * @param string $indexName The name of the new index
-     * @param string $clientName The client name to use
+     * @param string|null $clientName The client name to use
      * @return void
      * @throws \Flowpack\OpenSearch\Exception
      * @throws \Neos\Flow\Cli\Exception\StopCommandException
      */
-    public function createCommand($indexName, $clientName = null)
+    public function createCommand(string $indexName, string $clientName = null)
     {
-        if (!in_array($indexName, $this->indexInformer->getAllIndexNames())) {
+        if (!in_array($indexName, $this->indexInformer->getAllIndexNames(), true)) {
             $this->outputFormatted("The index <b>%s</b> is not configured in the current application", [$indexName]);
             $this->quit(1);
         }
@@ -90,14 +90,14 @@ class IndexCommandController extends CommandController
      * Update index settings
      *
      * @param string $indexName The name of the new index
-     * @param string $clientName The client name to use
+     * @param string|null $clientName The client name to use
      * @return void
      * @throws \Flowpack\OpenSearch\Exception
      * @throws \Neos\Flow\Cli\Exception\StopCommandException
      */
-    public function updateSettingsCommand($indexName, $clientName = null)
+    public function updateSettingsCommand(string $indexName, string $clientName = null)
     {
-        if (!in_array($indexName, $this->indexInformer->getAllIndexNames())) {
+        if (!in_array($indexName, $this->indexInformer->getAllIndexNames(), true)) {
             $this->outputFormatted("The index <b>%s</b> is not configured in the current application", [$indexName]);
             $this->quit(1);
         }
@@ -121,12 +121,12 @@ class IndexCommandController extends CommandController
      * Delete an index in OpenSearch
      *
      * @param string $indexName The name of the index to be removed
-     * @param string $clientName The client name to use
+     * @param string|null $clientName The client name to use
      * @return void
      */
-    public function deleteCommand($indexName, $clientName = null)
+    public function deleteCommand(string $indexName, string $clientName = null)
     {
-        if (!in_array($indexName, $this->indexInformer->getAllIndexNames())) {
+        if (!in_array($indexName, $this->indexInformer->getAllIndexNames(), true)) {
             $this->outputFormatted("The index <b>%s</b> is not configured in the current application", [$indexName]);
             $this->quit(1);
         }
@@ -150,12 +150,12 @@ class IndexCommandController extends CommandController
      * Refresh an index in OpenSearch
      *
      * @param string $indexName The name of the index to be removed
-     * @param string $clientName The client name to use
+     * @param string|null $clientName The client name to use
      * @return void
      */
-    public function refreshCommand($indexName, $clientName = null)
+    public function refreshCommand(string $indexName, string $clientName = null)
     {
-        if (!in_array($indexName, $this->indexInformer->getAllIndexNames())) {
+        if (!in_array($indexName, $this->indexInformer->getAllIndexNames(), true)) {
             $this->outputFormatted("The index <b>%s</b> is not configured in the current application", [$indexName]);
         }
 
@@ -179,7 +179,7 @@ class IndexCommandController extends CommandController
      *
      * @return void
      */
-    public function showConfiguredTypesCommand()
+    public function showConfiguredTypesCommand(): void
     {
         $classesAndAnnotations = $this->indexInformer->getClassesAndAnnotations();
         $this->outputFormatted("<b>Available document type</b>");
@@ -192,12 +192,13 @@ class IndexCommandController extends CommandController
     /**
      * Shows the status of the current mapping
      *
-     * @param string $object Class name of a domain object. If given, will only work on this single object
+     * @param string|null $object Class name of a domain object. If given, will only work on this single object
      * @param boolean $conductUpdate Set to TRUE to conduct the required corrections
-     * @param string $clientName The client name to use
+     * @param string|null $clientName The client name to use
      * @return void
+     * @throws \Flowpack\OpenSearch\Exception
      */
-    public function statusCommand($object = null, $conductUpdate = false, $clientName = null)
+    public function statusCommand(string $object = null, bool $conductUpdate = false, string $clientName = null): void
     {
         $result = new ErrorResult();
 
@@ -287,7 +288,7 @@ class IndexCommandController extends CommandController
      * @param string $className
      * @return array
      */
-    protected function getModificationsNeededStatesAndIdentifiers(Client $client, $className)
+    protected function getModificationsNeededStatesAndIdentifiers(Client $client, string $className): array
     {
         $query = $this->persistenceManager->createQueryForType($className);
         $states = [

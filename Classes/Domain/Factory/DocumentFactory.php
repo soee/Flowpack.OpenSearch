@@ -15,6 +15,7 @@ namespace Flowpack\OpenSearch\Domain\Factory;
 
 use Flowpack\OpenSearch\Domain\Exception\DocumentPropertiesMismatchException;
 use Flowpack\OpenSearch\Domain\Model;
+use Flowpack\OpenSearch\Domain\Model\Document;
 use Flowpack\OpenSearch\Transfer\Response;
 use Neos\Error\Messages\Error;
 use Neos\Error\Messages\Result as ErrorResult;
@@ -34,10 +35,10 @@ class DocumentFactory
      * @param Model\AbstractType $type
      * @param string $id
      * @param Response $response
-     * @return Model\Document
+     * @return Document
      * @throws DocumentPropertiesMismatchException
      */
-    public function createFromResponse(Model\AbstractType $type, $id, Response $response)
+    public function createFromResponse(Model\AbstractType $type, string $id, Response $response): Document
     {
         $content = $response->getTreatedContent();
 
@@ -65,6 +66,6 @@ class DocumentFactory
         $version = $content['_version'];
         $data = $content['_source'];
 
-        return new Model\Document($type, $data, $id, $version);
+        return new Document($type, $data, $id, $version);
     }
 }

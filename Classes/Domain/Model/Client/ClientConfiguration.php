@@ -25,33 +25,33 @@ class ClientConfiguration
     /**
      * @var string
      */
-    protected $host;
+    protected string $host;
 
     /**
      * @var int
      */
-    protected $port;
+    protected int $port;
 
     /**
      * @var string
      */
-    protected $scheme = 'http';
+    protected string $scheme = 'http';
 
     /**
      * @var string
      */
-    protected $username = '';
+    protected string $username = '';
 
     /**
      * @var string
      */
-    protected $password = '';
+    protected string $password = '';
 
     /**
      * @Flow\Inject
      * @var UriFactoryInterface
      */
-    protected $uriFactory;
+    protected UriFactoryInterface $uriFactory;
 
     /**
      * @return string
@@ -82,7 +82,7 @@ class ClientConfiguration
      * @param mixed $port Cast to int internally
      * @return void
      */
-    public function setPort($port): void
+    public function setPort(mixed $port): void
     {
         $this->port = (int)$port;
     }

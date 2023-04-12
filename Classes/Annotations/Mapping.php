@@ -26,7 +26,7 @@ final class Mapping
      * @var string
      * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-params.html
      */
-    public $index_name;
+    public string $index_name;
 
     /**
      * Set to yes the store actual field in the index, no to not store it.
@@ -35,7 +35,7 @@ final class Mapping
      * @var string
      * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-params.html
      */
-    public $store;
+    public string $store;
 
     /**
      * Set to analyzed for the field to be indexed and searchable after being broken down into token using an analyzer.
@@ -46,7 +46,7 @@ final class Mapping
      * @var string
      * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-params.html
      */
-    public $index;
+    public string $index;
 
     /**
      * Possible values are `no`, `yes`, `with_offsets`, `with_positions`, `with_positions_offsets`.
@@ -55,7 +55,7 @@ final class Mapping
      * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-params.html
      * @var string
      */
-    public $term_vector;
+    public string $term_vector;
 
     /**
      * The boost value. Defaults to `1.0`.
@@ -63,7 +63,7 @@ final class Mapping
      * @var float
      * @see https://www.elastic.co/guide/en/elasticsearch/reference/7.5/mapping-boost.html
      */
-    public $boost;
+    public float $boost;
 
     /**
      * The analyzer used to analyze the text contents when analyzed during indexing and when searching using a query string.
@@ -72,7 +72,7 @@ final class Mapping
      * @var string
      * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-params.html
      */
-    public $analyzer;
+    public string $analyzer;
 
     /**
      * The normalizer used to normalizer the content of keyword type fields during indexing.
@@ -80,7 +80,7 @@ final class Mapping
      * @var string
      * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/normalizer.html
      */
-    public $normalizer;
+    public string $normalizer;
 
     /**
      * The analyzer used to analyze the text contents only when searching using a query string.
@@ -88,7 +88,7 @@ final class Mapping
      * @var string
      * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-analyzer.html
      */
-	public $search_analyzer;
+	public string $search_analyzer;
 
     /**
      * The type to use for this
@@ -97,7 +97,7 @@ final class Mapping
      * @var string
      * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html
      */
-    public $type;
+    public string $type;
 
     /**
      * The date format.
@@ -106,32 +106,32 @@ final class Mapping
      * @var string
      * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-date-format.html
      */
-    public $format;
+    public string $format;
 
     /**
      * @var array
      * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html#types-multi-fields
      */
-    public $fields;
+    public array $fields;
 
     /**
      * @var array
      * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/properties.html
      */
-    public $properties;
+    public array $properties;
 
     /**
      * @var bool
      * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/text.html#fielddata-mapping-param
      */
-    public $fielddata;
+    public bool $fielddata;
 
     /**
      * Returns this class's properties as type/value array in order to directly use it for mapping information
      *
      * @return array
      */
-    public function getPropertiesArray()
+    public function getPropertiesArray(): array
     {
         $properties = get_object_vars($this);
 
@@ -145,7 +145,7 @@ final class Mapping
     /**
      * @return array
      */
-    public function getFields()
+    public function getFields(): array
     {
         return $this->fields;
     }

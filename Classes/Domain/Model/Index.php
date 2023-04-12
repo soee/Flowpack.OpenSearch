@@ -28,7 +28,7 @@ class Index
      * @var array
      * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-update-settings.html
      */
-    static protected $updatableSettings = [
+    static protected array $updatableSettings = [
         'index.number_of_replicas',
         'index.auto_expand_replicas',
         'index.blocks.read_only',
@@ -64,7 +64,7 @@ class Index
         'index.warmer.enabled',
     ];
 
-    static protected $allowedIndexCreateKeys = [
+    static protected array $allowedIndexCreateKeys = [
         'settings',
         'aliases',
         'mappings'
@@ -74,34 +74,34 @@ class Index
      * @var DynamicIndexSettingService
      * @Flow\Inject
      */
-    protected $dynamicIndexSettingService;
+    protected DynamicIndexSettingService $dynamicIndexSettingService;
 
     /**
      * @var string
      */
-    protected $name;
+    protected string $name;
 
     /**
      * @var string
      */
-    protected $settingsKey;
+    protected string $settingsKey;
 
     /**
      * The owner client of this index. Could be set later in order to allow creating pending Index objects
      *
-     * @var Client
+     * @var ?Client
      */
-    protected $client;
+    protected ?Client $client;
 
     /**
      * These are the Flow "Settings" aka Configuration, NOT the index settings
      * @var array
      */
-    protected $settings;
+    protected array $settings;
 
     /**
      * @param string $name
-     * @param Client $client $client
+     * @param ?Client $client
      * @throws OpenSearchException
      */
     public function __construct(string $name, Client $client = null)

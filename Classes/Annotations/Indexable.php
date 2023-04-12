@@ -24,12 +24,12 @@ final class Indexable
      *
      * @var string
      */
-    public $indexName;
+    public string $indexName;
 
     /**
      * The type this object has to be stored as, if target is CLASS
      *
      * @var string
      */
-    public $typeName;
+    public string $typeName;
 }
