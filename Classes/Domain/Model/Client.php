@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Flowpack\OpenSearch\Domain\Model;
@@ -56,7 +57,6 @@ class Client
 
     /**
      * @param string $bundle
-     * @return void
      */
     public function setBundle(string $bundle): void
     {
@@ -73,7 +73,6 @@ class Client
 
     /**
      * @param array $clientConfigurations
-     * @return void
      */
     public function setClientConfigurations(array $clientConfigurations): void
     {

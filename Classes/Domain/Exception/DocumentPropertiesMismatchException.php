@@ -1,4 +1,15 @@
 <?php
+
+/*
+ *  This file is part of the Flowpack.OpenSearch package.
+ *
+ *  (c) Contributors of the Flowpack Team - flowpack.org
+ *
+ *  This package is Open Source Software. For the full copyright and license
+ *  information, please view the LICENSE file which was distributed with this
+ *  source code.
+ */
+
 namespace Flowpack\OpenSearch\Domain\Exception;
 
 /*
@@ -26,7 +37,6 @@ class DocumentPropertiesMismatchException extends OpenSearchException
 
     /**
      * @param Result $result
-     * @return void
      */
     public function setErrorResult(Result $result): void
     {

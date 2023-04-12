@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Flowpack\OpenSearch\Mapping;
@@ -96,7 +97,6 @@ class EntityMappingBuilder
      * @param Mapping $mapping
      * @param string $className
      * @param string $propertyName
-     * @return void
      * @throws OpenSearchException
      */
     protected function augmentMappingByProperty(Mapping $mapping, string $className, string $propertyName): void

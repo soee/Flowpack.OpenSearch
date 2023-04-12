@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Flowpack\OpenSearch\Tests\Functional\Indexer\Object;
 
 /*
@@ -23,8 +26,6 @@ class IndexInformerTest extends FunctionalTestCase
      */
     protected $informer;
 
-    /**
-     */
     public function setUp(): void
     {
         parent::setUp();
@@ -37,9 +38,9 @@ class IndexInformerTest extends FunctionalTestCase
     public function classAnnotationTest()
     {
         $actual = $this->informer->getClassAnnotation(Fixtures\JustFewPropertiesToIndex::class);
-        static::assertInstanceOf(IndexableAnnotation::class, $actual);
-        static::assertSame('dummyindex', $actual->indexName);
-        static::assertSame('sampletype', $actual->typeName);
+        self::assertInstanceOf(IndexableAnnotation::class, $actual);
+        self::assertSame('dummyindex', $actual->indexName);
+        self::assertSame('sampletype', $actual->typeName);
     }
 
     /**
@@ -48,7 +49,7 @@ class IndexInformerTest extends FunctionalTestCase
     public function classWithOnlyOnePropertyAnnotatedHasOnlyThisPropertyToBeIndexed()
     {
         $actual = $this->informer->getClassProperties(Fixtures\JustFewPropertiesToIndex::class);
-        static::assertCount(1, $actual);
+        self::assertCount(1, $actual);
     }
 
     /**
@@ -57,6 +58,6 @@ class IndexInformerTest extends FunctionalTestCase
     public function classWithNoPropertyAnnotatedHasAllPropertiesToBeIndexed()
     {
         $actual = $this->informer->getClassProperties(Fixtures\Tweet::class);
-        static::assertGreaterThan(1, $actual);
+        self::assertGreaterThan(1, $actual);
     }
 }

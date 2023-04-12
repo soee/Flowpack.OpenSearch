@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Flowpack\OpenSearch\Domain\Factory;
@@ -73,8 +74,10 @@ class ClientFactory
     {
         $clientConfigurations = [];
         $clientConfiguration = new ClientConfiguration();
+
         foreach ($clientsSettings as $clientSettings) {
             $configuration = clone $clientConfiguration;
+
             foreach ($clientSettings as $settingKey => $settingValue) {
                 $setterMethodName = 'set' . ucfirst($settingKey);
                 try {

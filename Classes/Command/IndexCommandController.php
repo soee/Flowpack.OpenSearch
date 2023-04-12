@@ -1,4 +1,5 @@
 <?php
+
 namespace Flowpack\OpenSearch\Command;
 
 /*
@@ -60,14 +61,13 @@ class IndexCommandController extends CommandController
      *
      * @param string $indexName The name of the new index
      * @param string|null $clientName The client name to use
-     * @return void
      * @throws \Flowpack\OpenSearch\Exception
      * @throws \Neos\Flow\Cli\Exception\StopCommandException
      */
     public function createCommand(string $indexName, string $clientName = null)
     {
         if (!in_array($indexName, $this->indexInformer->getAllIndexNames(), true)) {
-            $this->outputFormatted("The index <b>%s</b> is not configured in the current application", [$indexName]);
+            $this->outputFormatted('The index <b>%s</b> is not configured in the current application', [$indexName]);
             $this->quit(1);
         }
 
@@ -75,13 +75,13 @@ class IndexCommandController extends CommandController
         try {
             $index = new Index($indexName, $client);
             if ($index->exists()) {
-                $this->outputFormatted("The index <b>%s</b> exists", [$indexName]);
+                $this->outputFormatted('The index <b>%s</b> exists', [$indexName]);
                 $this->quit(1);
             }
             $index->create();
-            $this->outputFormatted("Index <b>%s</b> created with success", [$indexName]);
+            $this->outputFormatted('Index <b>%s</b> created with success', [$indexName]);
         } catch (Exception $exception) {
-            $this->outputFormatted("Unable to create an index named: <b>%s</b>", [$indexName]);
+            $this->outputFormatted('Unable to create an index named: <b>%s</b>', [$indexName]);
             $this->quit(1);
         }
     }
@@ -91,14 +91,13 @@ class IndexCommandController extends CommandController
      *
      * @param string $indexName The name of the new index
      * @param string|null $clientName The client name to use
-     * @return void
      * @throws \Flowpack\OpenSearch\Exception
      * @throws \Neos\Flow\Cli\Exception\StopCommandException
      */
     public function updateSettingsCommand(string $indexName, string $clientName = null)
     {
         if (!in_array($indexName, $this->indexInformer->getAllIndexNames(), true)) {
-            $this->outputFormatted("The index <b>%s</b> is not configured in the current application", [$indexName]);
+            $this->outputFormatted('The index <b>%s</b> is not configured in the current application', [$indexName]);
             $this->quit(1);
         }
 
@@ -106,13 +105,13 @@ class IndexCommandController extends CommandController
         try {
             $index = new Index($indexName, $client);
             if (!$index->exists()) {
-                $this->outputFormatted("The index <b>%s</b> does not exists", [$indexName]);
+                $this->outputFormatted('The index <b>%s</b> does not exists', [$indexName]);
                 $this->quit(1);
             }
             $index->updateSettings();
-            $this->outputFormatted("Index settings <b>%s</b> updated with success", [$indexName]);
+            $this->outputFormatted('Index settings <b>%s</b> updated with success', [$indexName]);
         } catch (Exception $exception) {
-            $this->outputFormatted("Unable to update settings for <b>%s</b> index", [$indexName]);
+            $this->outputFormatted('Unable to update settings for <b>%s</b> index', [$indexName]);
             $this->quit(1);
         }
     }
@@ -122,12 +121,11 @@ class IndexCommandController extends CommandController
      *
      * @param string $indexName The name of the index to be removed
      * @param string|null $clientName The client name to use
-     * @return void
      */
     public function deleteCommand(string $indexName, string $clientName = null)
     {
         if (!in_array($indexName, $this->indexInformer->getAllIndexNames(), true)) {
-            $this->outputFormatted("The index <b>%s</b> is not configured in the current application", [$indexName]);
+            $this->outputFormatted('The index <b>%s</b> is not configured in the current application', [$indexName]);
             $this->quit(1);
         }
 
@@ -135,13 +133,13 @@ class IndexCommandController extends CommandController
         try {
             $index = new Index($indexName, $client);
             if (!$index->exists()) {
-                $this->outputFormatted("The index <b>%s</b> does not exists", [$indexName]);
+                $this->outputFormatted('The index <b>%s</b> does not exists', [$indexName]);
                 $this->quit(1);
             }
             $index->delete();
-            $this->outputFormatted("Index <b>%s</b> deleted with success", [$indexName]);
+            $this->outputFormatted('Index <b>%s</b> deleted with success', [$indexName]);
         } catch (Exception $exception) {
-            $this->outputFormatted("Unable to delete an index named: <b>%s</b>", [$indexName]);
+            $this->outputFormatted('Unable to delete an index named: <b>%s</b>', [$indexName]);
             $this->quit(1);
         }
     }
@@ -151,41 +149,38 @@ class IndexCommandController extends CommandController
      *
      * @param string $indexName The name of the index to be removed
      * @param string|null $clientName The client name to use
-     * @return void
      */
     public function refreshCommand(string $indexName, string $clientName = null)
     {
         if (!in_array($indexName, $this->indexInformer->getAllIndexNames(), true)) {
-            $this->outputFormatted("The index <b>%s</b> is not configured in the current application", [$indexName]);
+            $this->outputFormatted('The index <b>%s</b> is not configured in the current application', [$indexName]);
         }
 
         $client = $this->clientFactory->create($clientName);
         try {
             $index = new Index($indexName, $client);
             if (!$index->exists()) {
-                $this->outputFormatted("The index <b>%s</b> does not exists", [$indexName]);
+                $this->outputFormatted('The index <b>%s</b> does not exists', [$indexName]);
                 $this->quit(1);
             }
             $index->refresh();
-            $this->outputFormatted("Index <b>%s</b> refreshed with success", [$indexName]);
+            $this->outputFormatted('Index <b>%s</b> refreshed with success', [$indexName]);
         } catch (Exception $exception) {
-            $this->outputFormatted("Unable to refresh an index named: <b>%s</b>", [$indexName]);
+            $this->outputFormatted('Unable to refresh an index named: <b>%s</b>', [$indexName]);
             $this->quit(1);
         }
     }
 
     /**
      * List available document type
-     *
-     * @return void
      */
     public function showConfiguredTypesCommand(): void
     {
         $classesAndAnnotations = $this->indexInformer->getClassesAndAnnotations();
-        $this->outputFormatted("<b>Available document type</b>");
+        $this->outputFormatted('<b>Available document type</b>');
         /** @var $annotation Indexable */
         foreach ($classesAndAnnotations as $className => $annotation) {
-            $this->outputFormatted("%s", [$className], 4);
+            $this->outputFormatted('%s', [$className], 4);
         }
     }
 
@@ -193,9 +188,8 @@ class IndexCommandController extends CommandController
      * Shows the status of the current mapping
      *
      * @param string|null $object Class name of a domain object. If given, will only work on this single object
-     * @param boolean $conductUpdate Set to TRUE to conduct the required corrections
+     * @param bool $conductUpdate Set to TRUE to conduct the required corrections
      * @param string|null $clientName The client name to use
-     * @return void
      * @throws \Flowpack\OpenSearch\Exception
      */
     public function statusCommand(string $object = null, bool $conductUpdate = false, string $clientName = null): void
@@ -214,7 +208,7 @@ class IndexCommandController extends CommandController
         }
         array_walk($classesAndAnnotations, function (Indexable $annotation, $className) use ($result, $client, $conductUpdate) {
             $this->outputFormatted("Object \x1b[33m%s\x1b[0m", [$className], 4);
-            $this->outputFormatted("Index <b>%s</b> Type <b>%s</b>", [
+            $this->outputFormatted('Index <b>%s</b> Type <b>%s</b>', [
                 $annotation->indexName,
                 $annotation->typeName,
             ], 8);
@@ -225,7 +219,7 @@ class IndexCommandController extends CommandController
                     $annotation->indexName,
                 ]));
             }
-            $this->outputFormatted("Documents in Search: <b>%s</b>", [$count !== null ? $count : "\x1b[41mError\x1b[0m"], 8);
+            $this->outputFormatted('Documents in Search: <b>%s</b>', [$count !== null ? $count : "\x1b[41mError\x1b[0m"], 8);
 
             try {
                 $count = $this->persistenceManager->createQueryForType($className)->count();
@@ -236,7 +230,7 @@ class IndexCommandController extends CommandController
                     $exception->getMessage(),
                 ]));
             }
-            $this->outputFormatted("Documents in Persistence: <b>%s</b>", [$count !== null ? $count : "\x1b[41mError\x1b[0m"], 8);
+            $this->outputFormatted('Documents in Persistence: <b>%s</b>', [$count !== null ? $count : "\x1b[41mError\x1b[0m"], 8);
             if (!$result->forProperty($className)->hasErrors()) {
                 $states = $this->getModificationsNeededStatesAndIdentifiers($client, $className);
                 if ($conductUpdate) {
@@ -258,10 +252,10 @@ class IndexCommandController extends CommandController
                             $result->forProperty($className)->addError(new Error('An error occurred while trying to update an object to the OpenSearch backend. The exception message was "%s".', 1340358590, [$exception->getMessage()]));
                         }
                     }
-                    $this->outputFormatted("Objects inserted: <b>%s</b>", [$inserted], 8);
-                    $this->outputFormatted("Objects updated: <b>%s</b>", [$updated], 8);
+                    $this->outputFormatted('Objects inserted: <b>%s</b>', [$inserted], 8);
+                    $this->outputFormatted('Objects updated: <b>%s</b>', [$updated], 8);
                 } else {
-                    $this->outputFormatted("Modifications needed: <b>create</b> %d, <b>update</b> %d", [
+                    $this->outputFormatted('Modifications needed: <b>create</b> %d, <b>update</b> %d', [
                         count($states[ObjectIndexer::ACTION_TYPE_CREATE]),
                         count($states[ObjectIndexer::ACTION_TYPE_UPDATE]),
                     ], 8);

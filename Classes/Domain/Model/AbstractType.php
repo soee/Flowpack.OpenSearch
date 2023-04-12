@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Flowpack\OpenSearch\Domain\Model;
@@ -17,7 +18,6 @@ use Flowpack\OpenSearch\Domain\Exception\DocumentPropertiesMismatchException;
 use Flowpack\OpenSearch\Domain\Factory\DocumentFactory;
 use Flowpack\OpenSearch\Transfer\Response;
 use Neos\Flow\Annotations as Flow;
-use Neos\Utility\TypeHandling;
 
 /**
  * An abstract document type. Implement your own or use the GenericType provided with this package.
@@ -108,7 +108,7 @@ abstract class AbstractType
 
     /**
      * @param string $id
-     * @return boolean ...whether the deletion is considered successful
+     * @return bool ...whether the deletion is considered successful
      * @throws \Flowpack\OpenSearch\Exception
      * @throws \Neos\Flow\Http\Exception
      */
@@ -133,7 +133,7 @@ abstract class AbstractType
         }
         $treatedContent = $response->getTreatedContent();
 
-        return (integer)$treatedContent['count'];
+        return (int)$treatedContent['count'];
     }
 
     /**

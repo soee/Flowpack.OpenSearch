@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Flowpack\OpenSearch\Indexer\Object;
@@ -35,9 +36,9 @@ class ObjectIndexer
     /**
      * Defined action names
      */
-    const ACTION_TYPE_CREATE = 'create';
-    const ACTION_TYPE_UPDATE = 'update';
-    const ACTION_TYPE_DELETE = 'delete';
+    public const ACTION_TYPE_CREATE = 'create';
+    public const ACTION_TYPE_UPDATE = 'update';
+    public const ACTION_TYPE_DELETE = 'delete';
 
     /**
      * @Flow\Inject
@@ -76,7 +77,6 @@ class ObjectIndexer
      * @param object $object
      * @param string $signalInformation Signal information, if called from a signal
      * @param Client $client
-     * @return void
      */
     public function indexObject($object, $signalInformation = null, Client $client = null)
     {
@@ -142,7 +142,6 @@ class ObjectIndexer
      * @param object $object
      * @param string $signalInformation Signal information, if called from a signal
      * @param Client $client
-     * @return void
      */
     public function removeObject($object, $signalInformation = null, Client $client = null)
     {

@@ -1,4 +1,5 @@
 <?php
+
 namespace Flowpack\OpenSearch\Command;
 
 /*
@@ -50,7 +51,6 @@ class MappingCommandController extends CommandController
      * Shows the status of the current mapping...
      *
      * @param string $clientName The client name for the configuration. Defaults to the default client configured.
-     * @return void
      */
     public function showStatusCommand($clientName = null)
     {
@@ -90,7 +90,7 @@ class MappingCommandController extends CommandController
                     foreach ($properties as $key => $value) {
                         $keyMarkup = $this->markupDiffValue(isset($entityProperties[$key]) ? $key : null, isset($backendProperties[$key]) ? $key : null);
                         $valueMarkup = $this->markupDiffValue(isset($entityProperties[$key]) ? $entityProperties[$key] : null, isset($backendProperties[$key]) ? $backendProperties[$key] : null);
-                        $this->outputFormatted("%s : %s", [$keyMarkup, $valueMarkup], 12);
+                        $this->outputFormatted('%s : %s', [$keyMarkup, $valueMarkup], 12);
                     }
                 }
                 $this->outputLine();
@@ -132,17 +132,14 @@ class MappingCommandController extends CommandController
         return $return;
     }
 
-    /**
-     * @return void
-     */
     protected function printLegend()
     {
-        $legendText = "
-" . $this->markupDiffValue(null, 'something') . " defined in backend, but not in entities
-" . $this->markupDiffValue('something', null) . " defined in entities, but not in backend
-" . $this->markupDiffValue('something', 'something') . " defined both in entities and backend, all OK
-" . $this->markupDiffValue('something', 'different') . " different in entities and backend
-";
+        $legendText = '
+' . $this->markupDiffValue(null, 'something') . ' defined in backend, but not in entities
+' . $this->markupDiffValue('something', null) . ' defined in entities, but not in backend
+' . $this->markupDiffValue('something', 'something') . ' defined both in entities and backend, all OK
+' . $this->markupDiffValue('something', 'different') . ' different in entities and backend
+';
         $this->outputFormatted('<b>Legend:</b>');
         $this->outputFormatted($legendText, [], 4);
     }
@@ -183,7 +180,6 @@ class MappingCommandController extends CommandController
      * This command will adjust the backend's mapping to the mapping the entity status prescribes.
      *
      * @param string $clientName The client name for the configuration. Defaults to the default client configured.
-     * @return void
      */
     public function convergeCommand($clientName = null)
     {

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Flowpack\OpenSearch\Domain\Model;
@@ -21,24 +22,23 @@ use Neos\Utility\Arrays;
  */
 class Mapping
 {
-
     public const NEOS_TYPE_FIELD = 'neos_type';
 
     /**
      * @var AbstractType
      */
-    protected $type;
+    protected AbstractType $type;
 
     /**
      * @var array
      */
-    protected $properties = [];
+    protected array $properties = [];
 
     /**
      * see https://www.elastic.co/guide/en/elasticsearch/reference/current/dynamic-templates.html
      * @var array
      */
-    protected $dynamicTemplates = [];
+    protected array $dynamicTemplates = [];
 
     /**
      * This is the full / raw OpenSearch mapping which is merged with the properties and dynamicTemplates.
@@ -47,7 +47,7 @@ class Mapping
      *
      * @var array
      */
-    protected $fullMapping = [];
+    protected array $fullMapping = [];
 
     /**
      * @param AbstractType $type
@@ -74,9 +74,8 @@ class Mapping
      *
      * @param array|string $path
      * @param string $value
-     * @return void
      */
-    public function setPropertyByPath($path, $value)
+    public function setPropertyByPath($path, $value): void
     {
         $this->properties = Arrays::setValueByPath($this->properties, $path, $value);
     }
@@ -137,7 +136,6 @@ class Mapping
      *
      * @param string $dynamicTemplateName
      * @param array $mappingConfiguration
-     * @return void
      */
     public function addDynamicTemplate(string $dynamicTemplateName, array $mappingConfiguration): void
     {
@@ -162,7 +160,6 @@ class Mapping
      * It can be used to specify arbitrary OpenSearch mapping options, like f.e. configuring the _all field.
      *
      * @param array $fullMapping
-     * @return void
      */
     public function setFullMapping(array $fullMapping): void
     {

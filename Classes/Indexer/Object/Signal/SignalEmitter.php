@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Flowpack\OpenSearch\Indexer\Object\Signal;
 
 /*
@@ -21,7 +24,6 @@ class SignalEmitter
     /**
      * @Flow\Signal
      * @param object $object The object that has been updated
-     * @return void
      */
     public function emitObjectUpdated($object)
     {
@@ -30,7 +32,6 @@ class SignalEmitter
     /**
      * @Flow\Signal
      * @param object $object The object that has been updated
-     * @return void
      */
     public function emitObjectPersisted($object)
     {
@@ -39,7 +40,6 @@ class SignalEmitter
     /**
      * @Flow\Signal
      * @param object $object The object that has been updated
-     * @return void
      */
     public function emitObjectRemoved($object)
     {

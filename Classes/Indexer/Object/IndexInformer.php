@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Flowpack\OpenSearch\Indexer\Object;
@@ -42,9 +43,6 @@ class IndexInformer
      */
     protected $indexAnnotations = [];
 
-    /**
-     * @return void
-     */
     public function initializeObject()
     {
         $this->indexAnnotations = self::buildIndexClassesAndProperties($this->objectManager);

@@ -1,4 +1,5 @@
 <?php
+
 namespace Flowpack\OpenSearch\Annotations;
 
 /*
@@ -88,7 +89,7 @@ final class Mapping
      * @var string
      * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-analyzer.html
      */
-	public string $search_analyzer;
+    public string $search_analyzer;
 
     /**
      * The type to use for this

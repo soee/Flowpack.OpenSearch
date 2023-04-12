@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Flowpack\OpenSearch\Tests\Functional\Domain;
 
 /*
@@ -12,9 +15,9 @@ namespace Flowpack\OpenSearch\Tests\Functional\Domain;
  */
 
 use Flowpack\OpenSearch\Domain\Model\Client;
+use Flowpack\OpenSearch\Domain\Model\Index;
 use Flowpack\OpenSearch\Transfer\Response;
 use Neos\Flow\Tests\FunctionalTestCase;
-use Flowpack\OpenSearch\Domain\Model\Index;
 
 class IndexTest extends FunctionalTestCase
 {
@@ -27,7 +30,7 @@ class IndexTest extends FunctionalTestCase
         $clientMock->method('getBundle')
             ->willReturn('FunctionalTests');
 
-        $clientMock->expects($this->exactly(2))->method('request')
+        $clientMock->expects(self::exactly(2))->method('request')
             ->withConsecutive(
                 [
                     'PUT',
@@ -62,8 +65,8 @@ class IndexTest extends FunctionalTestCase
         $testObject->create();
         $testObject->updateSettings();
 
-        static::assertSame('index_without_prefix', $testObject->getOriginalName());
-        static::assertSame('index_without_prefix', $testObject->getName());
+        self::assertSame('index_without_prefix', $testObject->getOriginalName());
+        self::assertSame('index_without_prefix', $testObject->getName());
     }
 
     /**
@@ -75,7 +78,7 @@ class IndexTest extends FunctionalTestCase
         $clientMock->method('getBundle')
             ->willReturn('FunctionalTests');
 
-        $clientMock->expects($this->exactly(2))->method('request')
+        $clientMock->expects(self::exactly(2))->method('request')
             ->withConsecutive(
                 [
                     'PUT',
@@ -110,7 +113,7 @@ class IndexTest extends FunctionalTestCase
         $testObject->create();
         $testObject->updateSettings();
 
-        static::assertSame('index_with_prefix', $testObject->getOriginalName());
-        static::assertSame('prefix-index_with_prefix', $testObject->getName());
+        self::assertSame('index_with_prefix', $testObject->getOriginalName());
+        self::assertSame('prefix-index_with_prefix', $testObject->getName());
     }
 }

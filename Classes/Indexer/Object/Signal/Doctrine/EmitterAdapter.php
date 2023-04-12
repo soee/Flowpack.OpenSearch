@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Flowpack\OpenSearch\Indexer\Object\Signal\Doctrine;
 
 /*
@@ -29,7 +32,6 @@ class EmitterAdapter implements EmitterAdapterInterface
 
     /**
      * @param LifecycleEventArgs $eventArguments
-     * @return void
      */
     public function postUpdate(LifecycleEventArgs $eventArguments)
     {
@@ -38,7 +40,6 @@ class EmitterAdapter implements EmitterAdapterInterface
 
     /**
      * @param LifecycleEventArgs $eventArguments
-     * @return void
      */
     public function postPersist(LifecycleEventArgs $eventArguments)
     {
@@ -47,7 +48,6 @@ class EmitterAdapter implements EmitterAdapterInterface
 
     /**
      * @param LifecycleEventArgs $eventArguments
-     * @return void
      */
     public function postRemove(LifecycleEventArgs $eventArguments)
     {

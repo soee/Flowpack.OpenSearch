@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Flowpack\OpenSearch\Mapping;
@@ -34,9 +35,9 @@ class BackendMappingBuilder
      * Gets populated to an array during buildMappingInformation(). Contains "empty" mappings that have no type
      * attached, in order to display these. If this stays NULL, the buildMappingInformation() has not yet been run.
      *
-     * @var null|array
+     * @var array|null
      */
-    protected $indicesWithoutTypeInformation = null;
+    protected $indicesWithoutTypeInformation;
 
     /**
      * @Flow\Inject
@@ -91,7 +92,6 @@ class BackendMappingBuilder
 
     /**
      * @param Model\Client $client
-     * @return void
      */
     public function setClient(Model\Client $client): void
     {

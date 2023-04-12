@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Flowpack\OpenSearch;
 
 /*
@@ -33,7 +36,6 @@ class Package extends BasePackage
      * Invokes custom PHP code directly after the package manager has been initialized.
      *
      * @param Bootstrap $bootstrap The current bootstrap
-     * @return void
      */
     public function boot(Bootstrap $bootstrap)
     {
@@ -48,7 +50,6 @@ class Package extends BasePackage
 
     /**
      * @param Bootstrap $bootstrap
-     * @return void
      */
     public function prepareRealtimeIndexing(Bootstrap $bootstrap)
     {

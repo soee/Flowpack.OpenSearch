@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Flowpack\OpenSearch\Tests\Functional\Mapping;
 
 /*
@@ -17,13 +20,8 @@ use Neos\Flow\Tests\FunctionalTestCase;
 
 class MappingBuilderTest extends FunctionalTestCase
 {
-    /**
-     * @var EntityMappingBuilder
-     */
-    protected $mappingBuilder;
+    protected EntityMappingBuilder $mappingBuilder;
 
-    /**
-     */
     public function setUp(): void
     {
         parent::setUp();
@@ -36,7 +34,7 @@ class MappingBuilderTest extends FunctionalTestCase
     public function basicTest()
     {
         $information = $this->mappingBuilder->buildMappingInformation();
-        static::assertGreaterThanOrEqual(2, count($information));
-        static::assertInstanceOf(Mapping::class, $information[0]);
+        self::assertGreaterThanOrEqual(2, count($information));
+        self::assertInstanceOf(Mapping::class, $information[0]);
     }
 }

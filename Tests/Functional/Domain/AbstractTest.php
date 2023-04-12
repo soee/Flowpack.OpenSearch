@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Flowpack\OpenSearch\Tests\Functional\Domain;
 
 /*
@@ -40,15 +43,14 @@ abstract class AbstractTest extends FunctionalTestCase
         parent::setUp();
 
         $this->clientFactory = $this->objectManager->get(ClientFactory::class);
-        $client = $this->clientFactory->create("FunctionalTests");
+        $client = $this->clientFactory->create('FunctionalTests');
         $this->testingIndex = $client->findIndex('flow_opensearch_functionaltests');
 
         if ($this->testingIndex->exists()) {
             throw new \Exception('The index "flow_opensearch_functionaltests" already existed, aborting.', 1338967487);
-        } else {
-            $this->testingIndex->create();
-            $this->removeIndexOnTearDown = true;
         }
+        $this->testingIndex->create();
+        $this->removeIndexOnTearDown = true;
 
         $this->additionalSetUp();
     }

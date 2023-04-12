@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Flowpack\OpenSearch\Domain\Model;
@@ -21,7 +22,7 @@ class TypeGroup extends AbstractType
     /**
      * @var array<AbstractType>
      */
-    protected $types = [];
+    protected array $types = [];
 
     /**
      * @param Index $index

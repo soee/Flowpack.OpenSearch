@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Flowpack\OpenSearch\Tests\Functional\Fixtures;
 
 /*
@@ -11,8 +14,8 @@ namespace Flowpack\OpenSearch\Tests\Functional\Fixtures;
  * source code.
  */
 
-use Neos\Flow\Annotations as Flow;
 use Flowpack\OpenSearch\Annotations as OpenSearch;
+use Neos\Flow\Annotations as Flow;
 
 /**
  * An object for the "twitter" index, representing a "tweet" document.
@@ -36,7 +39,7 @@ class Tweet
     /**
      * @var \DateTime
      * @OpenSearch\Mapping(format="YYYY-MM-dd")
-     * @OpenSearch\Transform("Date", options={ "format"="Y-m-d" })
+     * @OpenSearch\Transform("Date", options={ "format": "Y-m-d" })
      */
     protected $date;
 

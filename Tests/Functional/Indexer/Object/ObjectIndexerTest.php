@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Flowpack\OpenSearch\Tests\Functional\Indexer\Object;
 
 /*
@@ -14,15 +17,15 @@ namespace Flowpack\OpenSearch\Tests\Functional\Indexer\Object;
 use Flowpack\OpenSearch\Domain\Model\Client;
 use Flowpack\OpenSearch\Domain\Model\Document;
 use Flowpack\OpenSearch\Indexer\Object\ObjectIndexer;
-use Flowpack\OpenSearch\Tests\Functional\Fixtures\TweetRepository;
 use Flowpack\OpenSearch\Tests\Functional\Fixtures\Tweet;
+use Flowpack\OpenSearch\Tests\Functional\Fixtures\TweetRepository;
 use Neos\Flow\Tests\FunctionalTestCase;
 use Neos\Flow\Utility\Algorithms;
 
 class ObjectIndexerTest extends FunctionalTestCase
 {
     /**
-     * @var boolean
+     * @var bool
      */
     protected static $testablePersistenceEnabled = true;
 
@@ -36,8 +39,6 @@ class ObjectIndexerTest extends FunctionalTestCase
      */
     protected $testClient;
 
-    /**
-     */
     public function setUp(): void
     {
         parent::setUp();
@@ -59,8 +60,8 @@ class ObjectIndexerTest extends FunctionalTestCase
             ->findDocumentById($documentId);
         $resultData = $resultDocument->getData();
 
-        static::assertEquals($testEntity->getMessage(), $resultData['message']);
-        static::assertEquals($testEntity->getUsername(), $resultData['username']);
+        self::assertEquals($testEntity->getMessage(), $resultData['message']);
+        self::assertEquals($testEntity->getUsername(), $resultData['username']);
     }
 
     /**
@@ -76,7 +77,7 @@ class ObjectIndexerTest extends FunctionalTestCase
             ->findType('tweet')
             ->findDocumentById($identifier)
             ->getVersion();
-        static::assertIsInt($initialVersion);
+        self::assertIsInt($initialVersion);
 
         $persistedTestEntity = $this->testEntityRepository->findByIdentifier($identifier);
         $persistedTestEntity->setMessage('changed message.');
@@ -91,8 +92,8 @@ class ObjectIndexerTest extends FunctionalTestCase
 
         // the version increments by two, since we index via AOP and via Doctrine lifecycle events
         // see https://github.com/Flowpack/Flowpack.OpenSearch/pull/36
-        static::assertSame($initialVersion + 2, $changedDocument->getVersion());
-        static::assertSame($changedDocument->getField('message'), 'changed message.');
+        self::assertSame($initialVersion + 2, $changedDocument->getVersion());
+        self::assertSame($changedDocument->getField('message'), 'changed message.');
     }
 
     /**
@@ -107,7 +108,7 @@ class ObjectIndexerTest extends FunctionalTestCase
             ->findIndex('flow_opensearch_functionaltests_twitter')
             ->findType('tweet')
             ->findDocumentById($identifier);
-        static::assertInstanceOf(Document::class, $initialDocument);
+        self::assertInstanceOf(Document::class, $initialDocument);
 
         $persistedTestEntity = $this->testEntityRepository->findByIdentifier($identifier);
         $this->testEntityRepository->remove($persistedTestEntity);
@@ -118,7 +119,7 @@ class ObjectIndexerTest extends FunctionalTestCase
             ->findIndex('flow_opensearch_functionaltests_twitter')
             ->findType('tweet')
             ->findDocumentById($identifier);
-        static::assertNull($foundDocument);
+        self::assertNull($foundDocument);
     }
 
     protected function createAndPersistTestEntity()

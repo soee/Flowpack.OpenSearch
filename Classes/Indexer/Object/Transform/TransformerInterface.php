@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Flowpack\OpenSearch\Indexer\Object\Transform;
 
 /*
@@ -13,8 +16,6 @@ namespace Flowpack\OpenSearch\Indexer\Object\Transform;
 
 use Flowpack\OpenSearch\Annotations\Transform as TransformAnnotation;
 
-/**
- */
 interface TransformerInterface
 {
     /**

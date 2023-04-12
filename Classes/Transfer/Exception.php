@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Flowpack\OpenSearch\Transfer;
@@ -49,7 +50,7 @@ class Exception extends OpenSearchException
 
         if ($request !== null) {
             $message = sprintf(
-"OpenSearch request failed:
+                "OpenSearch request failed:
 \n[%s %s]: %s
 \n\n
 Request data:

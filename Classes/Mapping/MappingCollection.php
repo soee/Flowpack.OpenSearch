@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Flowpack\OpenSearch\Mapping;
@@ -19,8 +20,8 @@ use Flowpack\OpenSearch\Domain\Model\Mapping;
 
 class MappingCollection extends ArrayCollection
 {
-    const TYPE_BACKEND = 'backend';
-    const TYPE_ENTITY = 'entity';
+    public const TYPE_BACKEND = 'backend';
+    public const TYPE_ENTITY = 'entity';
 
     /**
      * One of self::TYPE_* constants
@@ -105,7 +106,6 @@ class MappingCollection extends ArrayCollection
 
     /**
      * @param OpenSearchClient $client
-     * @return void
      */
     public function setClient(OpenSearchClient $client)
     {

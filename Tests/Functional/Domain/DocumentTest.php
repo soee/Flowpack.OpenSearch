@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Flowpack\OpenSearch\Tests\Functional\Domain;
 
 /*
@@ -40,9 +43,9 @@ class DocumentTest extends AbstractTest
     public function idOfFreshNewDocumentIsPopulatedAfterStoring(array $data = null)
     {
         $document = new Document(new TwitterType($this->testingIndex), $data);
-        static::assertNull($document->getId());
+        self::assertNull($document->getId());
         $document->store();
-        static::assertMatchesRegularExpression('/\w+/', $document->getId());
+        self::assertMatchesRegularExpression('/\w+/', $document->getId());
     }
 
     /**
@@ -52,13 +55,13 @@ class DocumentTest extends AbstractTest
     public function versionOfFreshNewDocumentIsCreatedAfterStoringAndIncreasedAfterSubsequentStoring(array $data = null)
     {
         $document = new Document(new TwitterType($this->testingIndex), $data);
-        static::assertNull($document->getVersion());
+        self::assertNull($document->getVersion());
         $document->store();
         $idAfterFirstStoring = $document->getId();
-        static::assertSame(1, $document->getVersion());
+        self::assertSame(1, $document->getVersion());
         $document->store();
-        static::assertSame(2, $document->getVersion());
-        static::assertSame($idAfterFirstStoring, $document->getId());
+        self::assertSame(2, $document->getVersion());
+        self::assertSame($idAfterFirstStoring, $document->getId());
     }
 
     /**
@@ -70,6 +73,6 @@ class DocumentTest extends AbstractTest
         $id = '42-1010-42';
         $document = new Document(new TwitterType($this->testingIndex), $data, $id);
         $document->store();
-        static::assertSame($id, $document->getId());
+        self::assertSame($id, $document->getId());
     }
 }

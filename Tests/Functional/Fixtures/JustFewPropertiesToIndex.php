@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 namespace Flowpack\OpenSearch\Tests\Functional\Fixtures;
 
 /*
@@ -11,8 +13,8 @@ namespace Flowpack\OpenSearch\Tests\Functional\Fixtures;
  * source code.
  */
 
-use Neos\Flow\Annotations as Flow;
 use Flowpack\OpenSearch\Annotations as OpenSearch;
+use Neos\Flow\Annotations as Flow;
 
 /**
  * This class contains just one property that has to be flagged as indexable.

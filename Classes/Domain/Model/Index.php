@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Flowpack\OpenSearch\Domain\Model;
@@ -16,8 +17,8 @@ namespace Flowpack\OpenSearch\Domain\Model;
 use Flowpack\OpenSearch\Exception as OpenSearchException;
 use Flowpack\OpenSearch\Service\DynamicIndexSettingService;
 use Flowpack\OpenSearch\Transfer\Response;
-use Neos\Utility\Arrays;
 use Neos\Flow\Annotations as Flow;
+use Neos\Utility\Arrays;
 
 /**
  * Representation of an Index
@@ -28,7 +29,7 @@ class Index
      * @var array
      * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-update-settings.html
      */
-    static protected array $updatableSettings = [
+    protected static array $updatableSettings = [
         'index.number_of_replicas',
         'index.auto_expand_replicas',
         'index.blocks.read_only',
@@ -64,7 +65,7 @@ class Index
         'index.warmer.enabled',
     ];
 
-    static protected array $allowedIndexCreateKeys = [
+    protected static array $allowedIndexCreateKeys = [
         'settings',
         'aliases',
         'mappings'
@@ -107,7 +108,8 @@ class Index
     public function __construct(string $name, Client $client = null)
     {
         $name = trim($name);
-        if (empty($name) || strpos($name, '_') === 0) {
+
+        if (empty($name) || str_starts_with($name, '_')) {
             throw new OpenSearchException('The provided index name "' . $name . '" must not be empty and not start with an underscore.', 1340187948);
         }
 
@@ -124,7 +126,6 @@ class Index
      * Inject the framework settings
      *
      * @param array $settings
-     * @return void
      */
     public function injectSettings(array $settings): void
     {
@@ -162,7 +163,7 @@ class Index
 
     /**
      * @param string $method
-     * @param string $path
+     * @param ?string $path
      * @param array $arguments
      * @param string|array $content
      * @param bool $prefixIndex
@@ -170,7 +171,7 @@ class Index
      * @throws OpenSearchException
      * @throws \Neos\Flow\Http\Exception
      */
-    public function request(string $method, string $path = null, array $arguments = [], $content = null, bool $prefixIndex = true): Response
+    public function request(string $method, string $path = null, array $arguments = [], string|array $content = null, bool $prefixIndex = true): Response
     {
         if ($this->client === null) {
             throw new OpenSearchException('The client of the index "' . $this->prefixName() . '" is not set, hence no requests can be done.', 1566313883);
@@ -192,7 +193,7 @@ class Index
     public function create(): void
     {
         $indexConfiguration = $this->getConfiguration() ?? [];
-        $indexCreateObject = array_filter($indexConfiguration, static fn($key) => in_array($key, self::$allowedIndexCreateKeys, true), ARRAY_FILTER_USE_KEY);
+        $indexCreateObject = array_filter($indexConfiguration, static fn ($key) => in_array($key, self::$allowedIndexCreateKeys, true), ARRAY_FILTER_USE_KEY);
         $this->request('PUT', null, [], $this->encodeRequestBody($indexCreateObject));
     }
 
@@ -204,11 +205,11 @@ class Index
         if ($this->client instanceof Client) {
             $path = 'indexes.' . $this->client->getBundle() . '.' . $this->settingsKey;
         } else {
-            $path = 'indexes.default' . '.' . $this->settingsKey;
+            $path = 'indexes.default.' . $this->settingsKey;
         }
 
-        $cconfiguration = Arrays::getValueByPath($this->settings, $path);
-        return $cconfiguration !== null ? $this->dynamicIndexSettingService->process($cconfiguration, $path, $this->name) : $cconfiguration;
+        $configuration = Arrays::getValueByPath($this->settings, $path);
+        return $configuration !== null ? $this->dynamicIndexSettingService->process($configuration, $path, $this->name) : $configuration;
     }
 
     /**
@@ -220,12 +221,14 @@ class Index
         // we only ever need the settings path from all the settings.
         $settings = $this->getConfiguration()['settings'] ?? [];
         $updatableSettings = [];
+
         foreach (static::$updatableSettings as $settingPath) {
             $setting = Arrays::getValueByPath($settings, $settingPath);
             if ($setting !== null) {
                 $updatableSettings = Arrays::setValueByPath($updatableSettings, $settingPath, $setting);
             }
         }
+
         if ($updatableSettings !== []) {
             $this->request('PUT', '/_settings', [], $this->encodeRequestBody($updatableSettings));
         }
@@ -268,7 +271,6 @@ class Index
 
     /**
      * @param Client $client
-     * @return void
      */
     public function setClient(Client $client): void
     {
@@ -277,7 +279,6 @@ class Index
 
     /**
      * @param string $settingsKey
-     * @return void
      */
     public function setSettingsKey(string $settingsKey): void
     {
@@ -292,7 +293,8 @@ class Index
     private function prefixName(): string
     {
         $indexConfiguration = $this->getConfiguration();
-        if (!isset($indexConfiguration['prefix']) || empty($indexConfiguration['prefix'])) {
+
+        if (empty($indexConfiguration['prefix'])) {
             return $this->name;
         }
 

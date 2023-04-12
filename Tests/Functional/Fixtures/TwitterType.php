@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Flowpack\OpenSearch\Tests\Functional\Fixtures;
 
 /*
@@ -12,7 +15,6 @@ namespace Flowpack\OpenSearch\Tests\Functional\Fixtures;
  */
 
 use Flowpack\OpenSearch\Domain\Model\AbstractType;
-use Neos\Flow\Annotations as Flow;
 
 /**
  * A twitter sample type

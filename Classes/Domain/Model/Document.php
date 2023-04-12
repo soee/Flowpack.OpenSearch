@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Flowpack\OpenSearch\Domain\Model;
@@ -71,8 +72,6 @@ class Document
     /**
      * When cloning (locally), the cloned object doesn't represent a stored one anymore,
      * so reset id, version and the dirty state.
-     *
-     * @return void
      */
     public function __clone()
     {
@@ -84,7 +83,6 @@ class Document
     /**
      * Stores this document. If ID is given, PUT will be used; else POST
      *
-     * @return void
      * @throws \Neos\Flow\Http\Exception
      * @throws OpenSearchException
      */
@@ -107,7 +105,7 @@ class Document
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isDirty(): bool
     {
@@ -135,7 +133,6 @@ class Document
 
     /**
      * @param array $data
-     * @return void
      */
     public function setData(array $data): void
     {
@@ -155,7 +152,7 @@ class Document
      * Gets a specific field's value from this' data
      *
      * @param string $fieldName
-     * @param boolean $silent
+     * @param bool $silent
      * @return mixed
      * @throws OpenSearchException
      */
@@ -191,8 +188,7 @@ class Document
     }
 
     /**
-     * @param boolean $dirty
-     * @return void
+     * @param bool $dirty
      */
     protected function setDirty(bool $dirty = true): void
     {

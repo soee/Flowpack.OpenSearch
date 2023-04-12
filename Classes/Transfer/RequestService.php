@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Flowpack\OpenSearch\Transfer;
@@ -53,16 +54,12 @@ class RequestService
 
     /**
      * @param array $settings
-     * @return void
      */
     public function injectSettings(array $settings)
     {
         $this->settings = $settings;
     }
 
-    /**
-     * @return void
-     */
     public function initializeObject()
     {
         $requestEngine = new CurlEngine();
@@ -88,7 +85,6 @@ class RequestService
         $clientConfigurations = $client->getClientConfigurations();
         $clientConfiguration = $clientConfigurations[0];
         /** @var ClientConfiguration $clientConfiguration */
-
         $uri = clone $clientConfiguration->getUri();
 
         if ($path !== null) {

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Flowpack\OpenSearch\Domain\Model\Client;
@@ -63,7 +64,6 @@ class ClientConfiguration
 
     /**
      * @param string $host
-     * @return void
      */
     public function setHost(string $host): void
     {
@@ -80,7 +80,6 @@ class ClientConfiguration
 
     /**
      * @param mixed $port Cast to int internally
-     * @return void
      */
     public function setPort(mixed $port): void
     {
@@ -97,7 +96,6 @@ class ClientConfiguration
 
     /**
      * @param string $scheme
-     * @return void
      */
     public function setScheme(string $scheme): void
     {
@@ -118,7 +116,6 @@ class ClientConfiguration
      * Sets username
      *
      * @param string $username
-     * @return void
      */
     public function setUsername(string $username): void
     {
@@ -139,7 +136,6 @@ class ClientConfiguration
      * Sets password
      *
      * @param string $password
-     * @return void
      */
     public function setPassword(string $password): void
     {
